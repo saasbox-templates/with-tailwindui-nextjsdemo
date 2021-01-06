@@ -1,0 +1,25 @@
+
+//- Copied from admin dashboard nhead
+mixin head(title)
+  head
+    meta(charset='utf-8')
+    title=title
+    link(rel="stylesheet", href="/stylesheets/newstyle.css")
+    link(rel="stylesheet", href="/stylesheets/stripe.css")
+    script(src="https://kit.fontawesome.com/5290e54986.js")
+    script(src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js")
+    if (fbtracker && fbtracker.is_ga_enabled)
+        script(async src="https://www.googletagmanager.com/gtag/js?id=" + fbtracker.ga_code)
+    if fbtracker && fbtracker.tracking == "on" && fbtracker.trackid
+      meta(property="fb:app_id" content="399358487459714")
+      script.
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', #{fbtracker.trackid});
+        fbq('track', 'PageView');
