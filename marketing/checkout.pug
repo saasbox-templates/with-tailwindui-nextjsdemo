@@ -5,87 +5,229 @@ html
     include common/simple-navbar.pug
     +simple-navbar()
     div(id="data-stripe-key", data-stripe-key=stripe_public_key)
+    div(id="data-client-secret", data-client-secret=clientSecret)
     .py-16.bg-gray-50.overflow-hidden.lg_py-24
       .relative.max-w-xl.mx-auto.px-4.sm_px-6.lg_px-8.lg_max-w-screen-xl.md_max-w-screen-xl
-        div
-          .md_grid.md_grid-cols-12.md_gap-6
-            .mt-5.md_mt-0.md_col-span-9.md_col-start-3.lg_col-span-9.lg_col-start-3
+        // First time setting up a plan, (free or paid)
+        if existingPlan == null
+          div
+            .md_grid.md_grid-cols-12.md_gap-6
+              .mt-5.md_mt-0.md_col-span-9.md_col-start-3.lg_col-span-9.lg_col-start-3
+                  .shadow.sm_rounded-md.sm_overflow-hidden
+                    .px-4.py-5.bg-white.sm_p-6
+                      .grid.grid-cols-3.gap-6
+                        .col-span-3.sm_col-span-2
+                          .px-4.sm_px-0
+                            h2.text-xl.font-medium.leading-6.text-gray-900 #{plan.name}
+                            p.mt-1.text-sm.leading-5.text-gray-600.
+                              #{plan.description}
+                      .mt-6
+                        - plan.billing_period = plan.billing_period.charAt(0).toUpperCase() + plan.billing_period.slice(1);
+                        p.text-md.font-semibold.leading-5.
+                          #{plan.billing_period}
+                        p.mt-1.text-sm.leading-5.text-gray-600
+                          | You won't be charged today. 15 Day Free Trial, Cancel Any Time. You will be charged in 
+                          span.font-bold
+                            | 15 days 
+                          | on 
+                          span.font-bold #{billing_date}.
+        else
+          div
+            .md_grid.md_grid-cols-12.md_gap-6
+              .mt-5.md_mt-0.md_col-span-9.md_col-start-3.lg_col-span-9.lg_col-start-3
                 .shadow.sm_rounded-md.sm_overflow-hidden
-                  .px-4.py-5.bg-white.sm_p-6
-                    .grid.grid-cols-3.gap-6
-                      .col-span-3.sm_col-span-2
-                        .px-4.sm_px-0
-                          h2.text-xl.font-medium.leading-6.text-gray-900 #{plan.name}
-                          p.mt-1.text-sm.leading-5.text-gray-600.
-                            #{plan.description}
-                    .mt-6
-                      - plan.billing_period = plan.billing_period.charAt(0).toUpperCase() + plan.billing_period.slice(1);
-                      p.text-md.font-semibold.leading-5.
-                        #{plan.billing_period}
-                      p.mt-1.text-sm.leading-5.text-gray-600
-                        | You won't be charged today. 15 Day Free Trial, Cancel Any Time. You will be charged in 
-                        span.font-bold
-                          | 15 days 
-                        | on 
-                        span.font-bold #{billing_date}.
+                  div.bg-white.px-4.py-5.border-b.border-gray-200.sm_px-6
+                    h3.text-lg.leading-6.font-medium.text-gray-900
+                      | Confirm Plan Change
+                  ul.divide-y.divide-gray-200
+                    li.px-6.py-5.bg-white
+                      .grid.grid-cols-3.gap-6
+                        //-.col-span-3.sm_col-span-2
+                          //-.py-4
+                            h1.text-2xl.font-medium.leading-6.text-gray-900 Your current plan
+                        div.align-middle
+                          h1.text-md.font-medium.leading-6.text-gray-900 Current plan
+                        div
+                          .px-4.sm_px-0
+                            h2.text-lg.font-medium.leading-6.text-gray-900 #{existingPlan.name}
+                            //-p.mt-1.text-sm.leading-5.text-gray-600.
+                              #{plan.description}
+                        div
+                          .px-4.sm_px-0
+                            - existingPlan.billing_period = existingPlan.billing_period.charAt(0).toUpperCase() + existingPlan.billing_period.slice(1, -2);
+                            p.mt-1.text-sm.leading-5.text-gray-600.
+                              #{existingPlan.price_per_period} USD / #{existingPlan.billing_period}
+                      //-.mt-6
+                        - plan.billing_period = plan.billing_period.charAt(0).toUpperCase() + plan.billing_period.slice(1);
+                        p.text-md.font-semibold.leading-5.
+                          Billing Period: #{plan.billing_period}
+                        p.text-md.font-semibold.leading-5.
+                          Price #{plan.price_per_period}
+                        //-p.mt-1.text-sm.leading-5.text-gray-600
+                          | You won't be charged today. 15 Day Free Trial, Cancel Any Time. You will be charged in 
+                          span.font-bold
+                            | 15 days 
+                          | on 
+                          span.font-bold #{billing_date}.
+                    li.px-6.py-5.bg-indigo-50.border-indigo-200
+                      .grid.grid-cols-3.gap-6
+                        //-.col-span-3.sm_col-span-2
+                          //-.py-4
+                            h1.text-2xl.font-medium.leading-6.text-gray-900 Your current plan
+                        div.align-middle
+                          h1.text-md.font-medium.leading-6.text-indigo-900 New Plan
+                        div
+                          .px-4.sm_px-0
+                            h2.text-lg.font-medium.leading-6.text-indigo-900 #{plan.name}
+                            //-p.mt-1.text-sm.leading-5.text-gray-600.
+                              #{plan.description}
+                        div
+                          .px-4.sm_px-0
+                            - plan.billing_period = plan.billing_period.charAt(0).toUpperCase() + plan.billing_period.slice(1, -2);
+                            p.mt-1.text-sm.leading-5.text-indigo-600.
+                              #{plan.price_per_period} USD / #{plan.billing_period}
         .hidden.md_block
           .py-5
         .mt-10.sm_mt-0
           .md_grid.md_grid-cols-12.md_gap-6.lg_grid.lg_grid-cols-12.lg_gap-6
             .mt-5.md_mt-0.md_col-span-5.md_col-start-3.lg_col-span-5.lg_col-start-3
-              .shadow.overflow-hidden.sm_rounded-md
-                .px-4.py-5.bg-white.sm_p-6
-                  form(action="/checkout", method="POST", id="payment-form")
-                    .grid.grid-cols-3.gap-6
-                      .col-span-3.sm_col-span-3
-                        label(for="card-element") Credit or debit card
-                        div(id="card-element")
-                        div(id="card-errors", role="alert")
-                        input(type='hidden', name="planId", value=plan.id)
-                        .text-right
-                          button.py-2.px-4.mt-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.shadow-sm.hover_bg-indigo-500.focus_outline-none.focus_ring-blue.active_bg-indigo-600.transition.duration-150.ease-in-out.track-subscribe(type="submit", id="payment-button", data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period) Submit Payment
-                  form(action="/apply-coupon", method="POST")
-                    div
-                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='first_name') Coupon Code
-                      input(type="text", name="coupon", placeholder="30OFFYAY!").mt-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.py-2.px-3.border.border-gray-300.rounded-md.shadow-sm.focus_outline-none.focus_ring-blue.focus_border-blue-300.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
-                      .text-right.mb-4
-                        button.py-2.px-4.mt-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.shadow-sm.hover_bg-indigo-500.focus_outline-none.focus_ring-blue.active_bg-indigo-600.transition.duration-150.ease-in-out.
-                         Apply
-                    div
-                      if (errors && errors.coupon)
-                        span.text-lg.text-red-500
-                          | #{errors.coupon}
+              if paymentMethod
+                .grid.grid-rows-4.grid-flow-col.gap-4
+                  .row-span-1.shadow.sm_rounded-md.sm_overflow-hidden
+                    fieldset
+                      legend.sr-only.
+                      .relative.bg-white.-space-y-px
+                        div.bg-white.px-4.py-5.border-b.border-gray-200.sm_px-6
+                          h3.text-lg.leading-6.font-medium.text-gray-900
+                            | Payment Method
+                        //  Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" 
+                        label.border-gray-200.relative.border.p-4.flex.flex-col.cursor-pointer.md_pl-4.md_pr-6.md_grid.md_grid-cols-4.gap-x-5.bg-indigo-50.border-indigo-200.z-10
+                          .col-span-1.flex.items-center.text-md
+                            input.h-4.w-4.text-indigo-600.border-gray-300.focus_ring-indigo-500(type='radio', checked, name='defaultPaymentMethod' value=true)
+                            span.ml-3.font-medium.text-gray-900 Default
+                          //-p#pricing-plans-0-description-0.ml-6.pl-1.text-sm.md_ml-0.md_pl-0.md_text-center
+                            //  Checked: "text-indigo-900", Not Checked: "text-gray-900" 
+                          .col-span-1.flex.items-center.text-md
+                            span.text-indigo-900.font-medium Ending #{paymentMethod.card.last4}
+                            //  Checked: "text-indigo-700", Not Checked: "text-gray-500" 
+                          .col-span-1.flex.items-center.text-md
+                            span.text-indigo-700 #{paymentMethod.card.brand}
+                          .col-span-1.flex.items-center.ml-10.h-6
+                            if paymentMethod.card.brand == "mastercard"
+                              img(src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABmJLR0QA/wD/AP+gvaeTAAAHkElEQVR4nO2cX4xVxR3HP3Pun71cVmT5I4KLoka5sERSJDa22EqrKSlgakx4sj41LqKAmvjQxDQmyoMPkrL8bR98KDxt0kSDIFqIsaUvBoJWcVm0WdxQ0BUWBHb37v1zxodDW733nHvnnDNzTmLm8wRzZn6/b+Z3d2bOb+YMWCwWi8VisVgsFovFYrFYLBaLxWKxWCwWi+WHijDt4D3I3gT3AisklAQsBLqB6UAnIIEx4DJwVsKggFPA0RE4vhJqcfzLl8gy1/OPSwnR2j+SQRzPP+c5Ll6K578dRgJwEvICVkv4LfAQcENEU1cEHAb2SjjYAxWVRrKfPBdZjYjvHziMYC9dHBTr1PyHQWsAPoPZFdgMrAdm6rQNXJSwOwfbFsIFvwrydWZTZTPSjH9gN4JtotfffxS0BOAkdAp4UcIzwFQdNlswBvTVYMtS79/InXSS4UUS9E+RLeIJz38cYgfgU/iNhD5gflxbIRkGNi3+EwKZnn+xnjfjGIkcgCEojMOrwKY4AqIiBMy5A/JzoLgOnEIaKgDBXmC96GU8WvMIfATdWXgLWBqlfVwyOeguwdTp3v/Lk5BdDdk5aagB4ARV1oiNnAvbMHQAPoY7HXgHuDNsWx3kCrDgHsh1fL+8WgVWQu62NFQBgi+o8yuxgcFwzULwLyhl4O/A7FDiNJHruN75AcNNrQry55C7PVld32EEhwfEk5xWbeCoVhyEWzLwNil1fjYPC5YGdz5ANge8D9UvE5PVyE24HJE71RcESgEYgkINDgALIkuLgRDemN847PiRy0H9IEjtr0zKdJPhDdmHglrFAIzDNlKacMFb7RRvVK9f6ICJv5rTo8Ay8rymUrFtAD6FR4EnY0uKSGcXzJgXvl3RhYl/6tcTgqflHta2q9QyAMegKGGrPk3hEA7cHGOtlT0NbqTVuTZ2yL+0fjNvGYAi/IGUxn2AWfMhPyV6+1weJg7o0xOBW5ng960qBC5DB2CmC2fwUraJk8nCXfeBk4lnx62DXAuZLj26IjCGYEFQAi/wL8CF50mp8wG65sXvfPBslI/EtxODqUg2Bj30DcBJyAO9xiS1QTgwY64+ex3XUl2WAmyQ/eT9HvgGwIU16M+nK9PZ5b146SKbg/IH+uxFYBYXWOX3wDcADjxuVk9rps3Sb1P+W7/NUDj+fdoUgPcgC/zSuKAAhIDOGfrtFgQxd5dj87Dsp2lWawrAHFgOTEtEkg+FTm8FpBsnA5On9NsNwXRG+VFjYVMAJPw0GT3+FAyuu2pnzNlWQvJAY5HfHLAoASmBmAyA+MacbTUBlBqL/AKwMAEpgXQUzdl2quZsKyGb+9YvAN0JSAkkmzNn23HN2VZCcGtjkV8AUpuAARwDE/D/bCtvPxmj6YCYn6TU0g8AGQ3phzRsK6IUAEuC+AXgWuIqvkPd4MtSvW7OtiJXGwv8AnAlASGBuAY7yU17ElYMwNkEhARSM7hUdI0fxm+DZLixyO9NONUX9snYx12DcTVmWCPhNPdtUwAEDCSjxp+ywQDIVBfYgM+P228ISvUsQdngEiB3hznbStT5R2NRUwBG4DgpTsTla1A3MA/Ua5BvysQkymVm8WFjYVMAVkLt+mdBqSAlXB3Vb7csoDkbnyjvinU0rfGCXsT2GRbTkqsX9dt00h5+AvrUNwDSOwdqoBvUuHYJaho30WtVKPxYn73QSL5GcMjvkW8AeqAiYbdZVcFIF0ZDf+oQzOQNIAxmWRXYJXrxndkCc0EZ+CMppiVGz4OrIS3h1qHwi/h2YjCGw46gh4EBWOQNQduNSFLArcHF/8S3M1FM9VQcSLa2+qy1ZTZ0Al7BO56YChfOQmUievtqBab8Wp+eCAwzlVdbVWgZgOUwDjyrVVIIpAvnY5znqd0NjsEtzrYINrT7lrjtfkAPvAns0SYqJGOXYDTCUDTmwJRUz3ewXfTS9my20oZMEZ4DTsSWFJGvhmA8xImG8iQUHzOnR4FjVHhBpaJSAG6HcsY7L5rKfCAlnD0F1cn2datVyK4BkV7mcwjBI2ITCmpDbEmW4FwGVgEjkaXFoFaBMx9BpdyiThV40LsfJyVGcFglejmv2iDUnnAJButwP/B5aGkaqE7CFx/7/yVUKyAfhFxq3/NwBpefhflGGCJeVXAK5tVhP7AsSvu4NF1VUIbs2lR/+ccQPBLml/9fIp2KKMG5PPwE75aUxKlXYfgTb3U0BnQ8kWrn/5kKK6J0Pmi4ruYTWCu8N+akb2kYErBx0R4cBNuRyftHsFFlqdmK2OeClsD+CVgMbCGZ3NFVAS9Pg57FcECsZz+wGJGcfyQvM05P3M4HzVeWDcBMCZslPAXo/s7la2AX0NcDvls2cgczybAZYcC/vO4/R5/4nb//KBi7tA9vyfo48DDeDYVRuAT8TcK+Mhxajn9KtxHZT54LrLr+WVBs/8A+BIeCUspxMH5SRkLmpLdaWiGghHf8fT7/vzYSvKHjsoBhCacFDNTh6BI4IWjexgvlv58Ml1lGnRUISkgWIvz9411DdhrBAJKjzOCE3zaixWKxWCwWi8VisVgsFovFYrFYLBaLxWKxWCwqfAuBltC5yjp4SgAAAABJRU5ErkJggg==")
+                            else if paymentMethod.card.brand == "visa"
+                              img(src="data:image/png;base64,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")
+                            else if paymentMethod.card.brand == "amex"
+                              img(src="data:image/png;base64,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")
+                          //  Checked: "text-indigo-700", Not Checked: "text-gray-500" 
+                          //-p#pricing-plans-0-description-1.text-gray-500.ml-6.pl-1.text-sm.md_ml-0.md_pl-0.md_text-right Active
+                        //  Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" 
+                        //- label.border-gray-200.relative.border.p-4.flex.flex-col.cursor-pointer.md_pl-4.md_pr-6.md_grid.md_grid-cols-3
+                            .flex.items-center.text-sm
+                              input.h-4.w-4.text-indigo-600.border-gray-300.focus_ring-indigo-500(type='radio' name='pricing_plan' value='Business' aria-labelledby='pricing-plans-1-label' aria-describedby='pricing-plans-1-description-0 pricing-plans-1-description-1')
+                              span#pricing-plans-1-label.ml-3.font-medium.text-gray-900 Business
+                            p#pricing-plans-1-description-0.ml-6.pl-1.text-sm.md_ml-0.md_pl-0.md_text-center
+                              //  Checked: "text-indigo-900", Not Checked: "text-gray-900" 
+                              span.text-gray-900.font-medium $99 / mo
+                              //  Checked: "text-indigo-700", Not Checked: "text-gray-500" 
+                              span.text-gray-500 ($990 / yr)
+                            //  Checked: "text-indigo-700", Not Checked: "text-gray-500" 
+                            p#pricing-plans-1-description-1.text-gray-500.ml-6.pl-1.text-sm.md_ml-0.md_pl-0.md_text-right Up to 25 active job postings
+                          //  Checked: "bg-indigo-50 border-indigo-200 z-10", Not Checked: "border-gray-200" 
+                          label.border-gray-200.rounded-bl-md.rounded-br-md.relative.border.p-4.flex.flex-col.cursor-pointer.md_pl-4.md_pr-6.md_grid.md_grid-cols-3
+                            .flex.items-center.text-sm
+                              input.h-4.w-4.text-indigo-600.border-gray-300.focus_ring-indigo-500(type='radio' name='pricing_plan' value='Enterprise' aria-labelledby='pricing-plans-2-label' aria-describedby='pricing-plans-2-description-0 pricing-plans-2-description-1')
+                              span#pricing-plans-2-label.ml-3.font-medium.text-gray-900 Enterprise
+                            p#pricing-plans-2-description-0.ml-6.pl-1.text-sm.md_ml-0.md_pl-0.md_text-center
+                              //  Checked: "text-indigo-900", Not Checked: "text-gray-900" 
+                              span.text-gray-900.font-medium $249 / mo
+                              //  Checked: "text-indigo-700", Not Checked: "text-gray-500" 
+                              span.text-gray-500 ($2490 / yr)
+                            //  Checked: "text-indigo-700", Not Checked: "text-gray-500" 
+                            p#pricing-plans-2-description-1.text-gray-500.ml-6.pl-1.text-sm.md_ml-0.md_pl-0.md_text-right Unlimited active job postings
+                  .row-span-1.bg-white.shadow.overflow-hidden.sm_rounded-md
+                    .px-4.py-5.sm_p-6
+                      form(action="/apply-coupon", method="POST")
+                        div
+                          label.block.text-sm.font-medium.leading-5.text-gray-700(for='first_name') Coupon Code
+                          input(type="text", name="coupon", placeholder="30OFFYEARLY").mt-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.py-2.px-3.border.border-gray-300.rounded-md.shadow-sm.focus_outline-none.focus_ring-blue.focus_border-blue-300.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                          .text-right.mb-4
+                            button.py-2.px-4.mt-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.shadow-sm.hover_bg-indigo-500.focus_outline-none.focus_ring-blue.active_bg-indigo-600.transition.duration-150.ease-in-out.
+                             Apply
+                        div
+                          if (errors && errors.coupon)
+                            span.text-lg.text-red-500
+                              | #{errors.coupon}
+              else
+                .grid.grid-rows-5.grid-flow-col.gap-2
+                  .row-span-2.bg-white.shadow.overflow-hidden.sm_rounded-md
+                    .px-4.sm_p-6
+                      form(action="/checkout", method="POST", id="payment-form")
+                        .grid.grid-cols-3.gap-6
+                          .col-span-3.sm_col-span-3
+                            label(for="card-element") Credit or debit card
+                            div(id="card-element")
+                            div(id="card-errors", role="alert")
+                            input(type='hidden', name="planId", value=plan.id)
+                            //- This button won't be needed, only the bottom button
+                              .text-right
+                                button.py-2.px-4.mt-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.shadow-sm.hover_bg-indigo-500.focus_outline-none.focus_ring-blue.active_bg-indigo-600.transition.duration-150.ease-in-out.track-subscribe(type="submit", id="payment-button", data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period) Submit Payment
+                  .row-span-2.bg-white.shadow.overflow-hidden.sm_rounded-md
+                    .px-4.py-5.sm_p-6
+                      form(action="/apply-coupon", method="POST")
+                        div
+                          label.block.text-sm.font-medium.leading-5.text-gray-700(for='first_name') Coupon Code
+                          input(type="text", name="coupon", placeholder="30OFFYEARLY").mt-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.py-2.px-3.border.border-gray-300.rounded-md.shadow-sm.focus_outline-none.focus_ring-blue.focus_border-blue-300.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                          .text-right.mb-4
+                            button.py-2.px-4.mt-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.shadow-sm.hover_bg-indigo-500.focus_outline-none.focus_ring-blue.active_bg-indigo-600.transition.duration-150.ease-in-out.
+                             Apply
+                        div
+                          if (errors && errors.coupon)
+                            span.text-lg.text-red-500
+                              | #{errors.coupon}
             .mt-5.md_mt-0.md_col-span-4.md_col-start-8.lg_col-span-4.lg_col-start-8
               .shadow.sm_rounded-md.sm_overflow-hidden
-                  .px-4.py-5.bg-white.sm_p-6
-                    .grid.grid-cols-3.gap-6
-                      .col-span-3.sm_col-span-2
-                        .px-4.sm_px-0
-                          h2.text-xl.font-bold.leading-6 Order Summary
-                          p.mt-1.text-sm.leading-5.text-gray-600.
-                            #{plan.name}
-                          p.mt-1.text-sm.leading-5.text-gray-600
-                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature1}
-                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature2}
-                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature3}
-                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature4}
-                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature5}
-                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature6}
-                          .py-5
-                            .border-t.border-gray-200
-                          h5.text-lg.font-semibold.leading-6  Total:
-                          if coupon
-                            p(style="text-decoration:line-through; color:red").lead #{plan.price_per_period} USD
-                            p.mt-1.text-sm.leading-5.text-gray-600 #{coupon.final} USD
-                          else
-                            p.mt-1.text-sm.leading-5.text-gray-600 #{plan.price_per_period} USD
-                          if coupon
-                            h5 Your Deal:
-                            p.mt-1.text-sm.leading-5.text-gray-600 #{coupon.deal}
-
-    include common/footer.pug
-    +footer()
+                .px-4.py-5.bg-white.sm_p-6
+                  .grid.grid-cols-3.gap-6
+                    .col-span-3.sm_col-span-2
+                      .px-4.sm_px-0
+                        h2.text-xl.font-bold.leading-6 Order Summary
+                        p.mt-1.text-sm.leading-5.text-gray-600.
+                          #{plan.name}
+                        p.mt-1.text-sm.leading-5.text-gray-600
+                        p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature1}
+                        p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature2}
+                        p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature3}
+                        p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature4}
+                        p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature5}
+                        p.mt-1.text-sm.leading-5.text-gray-600 #{plan.feature6}
+                        .py-5
+                          .border-t.border-gray-200
+                        h5.text-lg.font-semibold.leading-6  Total:
+                        if coupon
+                          p(style="text-decoration:line-through; color:red").lead #{plan.price_per_period} USD
+                          p.mt-1.text-sm.leading-5.text-gray-600 #{coupon.final} USD
+                        else
+                          p.mt-1.text-sm.leading-5.text-gray-600 #{plan.price_per_period} USD
+                        if coupon
+                          h5 Your Deal:
+                          p.mt-1.text-sm.leading-5.text-gray-600 #{coupon.deal}
+              // Form used only when there is existing payment method.
+              form(action="/checkout", method="POST")
+                input(type='hidden', name="planId", value=plan.id)
+                .text-right
+                  //
+                  // This becomes a payment button that submits CC info to Stripe before submitting the form
+                  // If there is no payment method. Otherwise it does a simple submit with not much input.
+                  //
+                  button.py-2.px-4.mt-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.shadow-sm.hover_bg-indigo-500.focus_outline-none.focus_ring-blue.active_bg-indigo-600.transition.duration-150.ease-in-out.track-subscribe(type="submit", id=(paymentMethod ==null) ? "payment-button" : "regular-button", data-track-name=plan.name, data-track-price=plan.price_per_period, data-track-period=plan.billing_period)
+                    if existingPlan
+                      | Confirm Change
+                    else
+                      | Confirm Plan
+    include common/checkout-footer.pug
+    +checkout_footer()
     script(src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous")
-    script(src="/javascripts/checkout.js")
+    script(src="/javascripts/checkout-v2.js")
     if coupon
       script(src="/javascripts/confetti.js")

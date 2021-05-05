@@ -1,0 +1,22 @@
+
+//- Copied from admin dashboard footer
+mixin checkout_footer()
+  footer.bg-white
+    .max-w-screen-xl.mx-auto.py-12.px-4.sm_px-6.lg_py-16.lg_px-8
+      .xl_grid.xl_grid-cols-3.xl_gap-8
+        .space-y-8.xl_col-span-1
+          div.align-center
+            img.float-left.mr-5.h-10.w-10.rounded-full(src=thisApp.ImageUrl, alt=thisApp.name)
+            span.text-gray-500.text-lg.leading-10.align-center
+              | #{thisApp.name}
+          p.text-gray-500.text-base.leading-6.
+            #{thisApp.about}
+
+      .mt-12.border-t.border-gray-200.pt-8
+        p.text-base.leading-6.text-gray-400.xl_text-center.
+          © #{new Date().getFullYear()} #{thisApp.name} Inc. All rights reserved.
+  script(src="https://js.stripe.com/v3/")
+  if (fbtracker && fbtracker.is_ga_enabled)
+    script(src=asset("/javascripts/ganalytics.js"))
+  if fbtracker && fbtracker.tracking == "on" && fbtracker.trackid
+    script(src=asset('/javascripts/fb-tracker.js'))

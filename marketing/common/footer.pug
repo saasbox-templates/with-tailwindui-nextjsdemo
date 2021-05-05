@@ -101,6 +101,6 @@ mixin footer()
           © #{new Date().getFullYear()} #{thisApp.name} Inc. All rights reserved.
   script(src="https://js.stripe.com/v3/")
   if (fbtracker && fbtracker.is_ga_enabled)
-    script(src="/javascripts/ganalytics.js")
+    script(src=asset("/javascripts/ganalytics.js"))
   if fbtracker && fbtracker.tracking == "on" && fbtracker.trackid
-    script(src='/javascripts/fb-tracker.js')
+    script(src=asset('/javascripts/fb-tracker.js'))
