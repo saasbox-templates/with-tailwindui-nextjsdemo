@@ -16,7 +16,7 @@ body.antialiased.font-sans.bg-gray-200
               .flex-shrink-0.flex.items-center.px-4
                 p.text-4xl.antialiased.semibold.text-center.text-white
                   | #{thisApp.name}
-                //-img.h-8.w-auto(src='/images/SaaSBox2.svg', alt='Workflow')
+                //-img.h-8.w-auto(src=asset('/images/SaaSBox2.svg'), alt='Workflow')
               .mt-5.flex-1.h-0.overflow-y-auto
                 nav.px-2
                 a.group.flex.items-center.px-2.py-2.text-sm.leading-5.font-medium.text-white.rounded-md.bg-indigo-900.focus_outline-none.focus_bg-indigo-700.transition.ease-in-out.duration-150(href='/dashboard/welcome')
@@ -40,7 +40,7 @@ body.antialiased.font-sans.bg-gray-200
             .flex.items-center.flex-shrink-0.px-4
               p.text-4xl.antialiased.semibold.text-center.text-white
                 | #{thisApp.name}
-              //-img.h-8.w-auto(src='/images/SaaSBox2.svg', alt='Workflow')
+              //-img.h-8.w-auto(src=asset('/images/SaaSBox2.svg'), alt='Workflow')
             .mt-5.h-0.flex-1.flex.flex-col.overflow-y-auto
               // Sidebar component, swap this element with another sidebar if you like
               nav.flex-1.px-2.bg-indigo-800

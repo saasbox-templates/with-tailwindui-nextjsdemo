@@ -4,7 +4,7 @@ mixin head(title)
   head
     meta(charset='utf-8')
     title=title
-    link(rel="stylesheet", href="/stylesheets/newstyle.css")
+    link(rel="stylesheet", href=asset("/stylesheets/newstyle.css"))
     script(src="https://kit.fontawesome.com/5290e54986.js")
     script(src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js")
     if (fbtracker && fbtracker.is_ga_enabled)

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="262px" height="51px" viewBox="0 0 262 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="Larsseit-Medium, Larsseit" font-weight="400">
+        <g id="Group" transform="translate(0.000000, -17.000000)" fill="#FFFFFF">
+            <text id="SaaSBox" font-size="48" letter-spacing="-2">
+                <tspan x="95" y="61">SaaSBox</tspan>
+            </text>
+            <text id="{" font-size="64" letter-spacing="-2.66666675">
+                <tspan x="0" y="63">{</tspan>
+            </text>
+            <text id="}" font-size="64" letter-spacing="-2.66666675">
+                <tspan x="45" y="63">}</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
