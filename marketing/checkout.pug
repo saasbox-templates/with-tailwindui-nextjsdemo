@@ -228,6 +228,6 @@ html
     include common/checkout-footer.pug
     +checkout_footer()
     script(src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous")
-    script(src="/javascripts/checkout-v2.js")
+    script(src=asset("/javascripts/checkout-v2.js"))
     if coupon
-      script(src="/javascripts/confetti.js")
+      script(src=asset("/javascripts/confetti.js"))
