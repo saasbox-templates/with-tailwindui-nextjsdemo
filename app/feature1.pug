@@ -1,0 +1,14 @@
+extends common/app-sidebar.pug
+block head
+  include common/app-head.pug
+  +head("Welcome to your Application")
+block page_content
+  //- JWT token with user info:
+  div(hidden, id="token", data-token=token)
+  //  Replace with your content 
+  .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+    h1.text-2xl.font-semibold.text-gray-900 Welcome to your Application!
+    h4.text-gray-600 Let's get you set up.
+block footer
+  include common/app-footer.pug
+  +footer()
