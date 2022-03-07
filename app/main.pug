@@ -7,6 +7,27 @@ block page_content
   .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
     h1.text-2xl.font-semibold.text-gray-900 Welcome to your Application!
     h4.text-gray-600 Let's get you set up.
+    .pt-5
+      p.text-md You may edit this page from 
+        a(href="/dashboard/templates", target="_blank").text-blue-600.hover_text-blue-800.visited_text-purple-600
+          | Dashboard Templates 
+        | by accessing 
+        span.font-semibold edit > app > main > edit
+    .pt-6
+      h3.font-bold.leading-5.text-xl Embedding Nocode applications
+      p.text-md Check out our guides on 
+        a(href="https://docs.saasbox.net").text-blue-600.hover_text-blue-800.visited_text-purple-600
+          | how to embed a no code application with Bubble, Retool, Appsmith & more.
+    .pt-5
+      p.text-md The one time code (otc) that defines this user to your embed: 
+        span.font-semibold
+          | #{otc}
+    .pt-6
+      h3.font-bold.leading-5.text-xl External SaaS residing at app.yourdomain.com
+      p.text-md You may skip using this dashboard with your own set up at app.yourdomain.com
+      p.text-md Check out our NextJS/React guide 
+        a(href="https://docs.saasbox.net").text-blue-600.hover_text-blue-800.visited_text-purple-600
+          | on how to achieve this.
 block footer
   include common/app-footer.pug
   +footer()
