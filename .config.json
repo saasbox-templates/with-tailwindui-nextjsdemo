@@ -1,5 +1,5 @@
 {
-    "description": "Default Tailwind UI template for SaaSBox",
-    "assets": "assets",
-    "ignore": [".git", ".config.json"]
+    assets: "assets",
+    description: "Default template for SaaSBox based on TailwindUI",
+    thumbnail: null 
 }
