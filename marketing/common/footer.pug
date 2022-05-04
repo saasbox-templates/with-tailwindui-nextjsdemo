@@ -7,7 +7,7 @@ mixin footer()
         .space-y-8.xl_col-span-1
           img.h-10(src=thisApp.ImageUrl, alt=thisApp.name)
           p.text-gray-500.text-base.leading-6.
-            Making the world a better place through constructing elegant hierarchies.
+            #{thisApp.about}
           .flex.space-x-
             a.text-gray-400.hover_text-gray-500(href='#')
               span.sr-only Facebook
