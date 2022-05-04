@@ -1,5 +1,5 @@
 {
-    assets: "assets",
-    description: "Default template for SaaSBox based on TailwindUI",
-    thumbnail: null 
+    "assets": "assets",
+    "description": "Default template for SaaSBox based on TailwindUI",
+    "thumbnail": null 
 }
