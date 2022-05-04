@@ -28,8 +28,8 @@ block page_content
                       Your API Key
                     .py-4
                       .flex.items-center.justify-between
-                        div(id="api_key_text").text-lg.leading-5.font-medium.text-gray-700
-                          | #{thisApp.saasbox_api_key}                    
+                        span(id="api_key_text").text-lg.leading-5.font-medium.text-gray-700
+                          |                    
     .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
       .mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.grid-rows-2
         .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
@@ -58,20 +58,25 @@ block footer
     $(document).ready (function(){
       let jwt = $("#token").attr("data-token");
       // Create new user or fetch existing user to populate their data.
-      console.log("Making ajax call:")
+      //console.log("Making ajax call with jwt:", jwt)
       $.ajax({
             url: "https://thinner.onrender.com/create-get-user",
-            headers: { Authorization: $`Bearer ${jwt}` },
+            headers: { Authorization: "Bearer " + jwt },
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: JSON.stringify({ }),
             type: 'POST',
             success: ((res) => {
-                console.log(res.message);
+                let user_data = res.user_data;
+                let input = document.getElementById('domain_input');
+                input.value = user_data.domain;
+                console.log("User data:", user_data);
+                $("#api_key_text").text(user_data.api_key);
+                // console.log(res);
                 // FIXME: Populate page with the user information.
             }),
             error: ((err) => {
-                console.log(err.error);
+                console.log(err);
             })
       });
     });
@@ -82,14 +87,14 @@ block footer
         let jwt = $("#token").attr("data-token");
         $.ajax({
             url: "https://thinner.onrender.com/post-customer-info",
-            headers: { Authorization: $`Bearer ${jwt}` },
+            headers: { Authorization: "Bearer " + jwt },
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: JSON.stringify({ domain: input.value }),
             type: 'POST',
             success: ((res) => {
                 console.log(res.message);
-                //location.reload();
+                location.reload();
             }),
             error: ((err) => {
                 console.log(err.error);
