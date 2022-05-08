@@ -1,104 +1,26 @@
-extends common/app-sidebar.pug
-block head
-  include common/app-head.pug
-  +head("Welcome to your Application")
-block page_content
-  //- JWT token with user info:
-  div(hidden, id="token", data-token=token)
-  //  Replace with your page_content
+//  This example requires Tailwind CSS v2.0+ 
+//
   
-  // Customer section of dashboard.
-  if (user.is_admin == true)
-    .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-      h1.text-2xl.font-semibold.text-gray-900 Your API Key
-      div
-        .mt-8.border-t.border-gray-200.pt-8
-          div
-            p.mt-1.text-sm.leading-5.text-gray-500 
-          .bg-white.shadow.px-4.py-5.sm_rounded-lg.sm_p-10
-            .md_grid.md_grid-cols-3.md_gap-6
-              .md_col-span-1
-                h3.text-lg.font-medium.leading-6.text-gray-900 API Credentials
-                p.mt-1.text-sm.leading-5.text-gray-500.
-                  API key lets you use this library on your domain.
-              .mt-5.md_mt-0.md_col-span-2
-                .grid.grid-cols-6.gap-6
-                  .col-span-6.sm_col-span-3
-                    label.block.text-sm.font-medium.leading-5.text-gray-700(for='firstname').
-                      Your API Key
-                    .py-4
-                      .flex.items-center.justify-between
-                        span(id="api_key_text").text-lg.leading-5.font-medium.text-gray-700
-                          |                    
-    .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-      .mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.grid-rows-2
-        .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
-          .grid.grid-rows-3
-            form(id="domain_form", action="https://thinner.onrender.com/post-customer-data", method="POST")
-              .row-span-1
-                label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Domain
-                .mt-1.sm_mt-0.sm_col-span-2
-                  .max-w-lg.flex.rounded-md.shadow-sm
-                    span.inline-flex.items-center.px-3.rounded-l-md.border.border-r-0.border-gray-300.bg-gray-50.text-gray-500.sm_text-sm
-                      | https://
-                    input(id="domain_input", name="domain", type="text", placeholder="www.mydomain.com", value=thisApp.domain).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
-                if (errors && errors.domain)
-                  p.mt-2.text-sm.text-red-600
-                    | #{errors.domain}
-              .row-span-2
-                .mt-8.border-t.border-gray-200.pt-5
-                  .flex.justify-end
-                    span.ml-3.inline-flex.rounded-md.shadow-sm
-                      button(id="domain_button", onclick=`submitDomain()`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit') Save
-    
-block footer
-  include common/app-footer.pug
-  +footer()
-  script.
-    $(document).ready (function(){
-      let jwt = $("#token").attr("data-token");
-      // Create new user or fetch existing user to populate their data.
-      //console.log("Making ajax call with jwt:", jwt)
-      $.ajax({
-            url: "https://thinner.onrender.com/create-get-user",
-            headers: { Authorization: "Bearer " + jwt },
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: JSON.stringify({ }),
-            type: 'POST',
-            success: ((res) => {
-                let user_data = res.user_data;
-                let input = document.getElementById('domain_input');
-                input.value = user_data.domain;
-                console.log("User data:", user_data);
-                $("#api_key_text").text(user_data.api_key);
-                // console.log(res);
-                // FIXME: Populate page with the user information.
-            }),
-            error: ((err) => {
-                console.log(err);
-            })
-      });
-    });
-
-    // This is how we submit domain information.
-    function submitDomain() {
-        let input = document.getElementById('domain_input');
-        let jwt = $("#token").attr("data-token");
-        $.ajax({
-            url: "https://thinner.onrender.com/post-customer-info",
-            headers: { Authorization: "Bearer " + jwt },
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: JSON.stringify({ domain: input.value }),
-            type: 'POST',
-            success: ((res) => {
-                console.log(res.message);
-                location.reload();
-            }),
-            error: ((err) => {
-                console.log(err.error);
-            })
-          });
-
-    }
+    This example requires updating your template:
+  
+    ```
+    <html class="h-full">
+    <body class="h-full">
+    ```
+html
+  include common/app-head.pug
+  +head("Welcome to Polite Popup")  
+  body
+    .min-h-full
+      include common/app-navbar.pug
+      +app-navbar()
+      .py-10
+        header
+          .max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
+            h1.text-3xl.font-bold.leading-tight.text-gray-900 Dashboard
+        main
+          .max-w-7xl.mx-auto.sm_px-6.lg_px-8
+            //  Replace with your content 
+            .px-4.py-8.sm_px-0
+              .border-4.border-dashed.border-gray-200.rounded-lg.h-96
+            //  /End replace 

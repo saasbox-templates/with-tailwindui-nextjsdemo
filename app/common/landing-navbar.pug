@@ -1,0 +1,70 @@
+mixin landing-navbar()
+  //-.hidden.lg_block.lg_absolute.lg_inset-0
+    svg.absolute.top-0.right-1.transform.translate-x-64.-translate-y-8(width='640', height='784', fill='none', viewBox='0 0 640 784')
+      defs
+        pattern#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047(x='118', y='0', width='20', height='20', patternUnits='userSpaceOnUse')
+          rect.text-gray-200(x='0', y='0', width='4', height='4', fill='currentColor')
+      rect.text-gray-50(y='72', width='640', height='640', fill='currentColor')
+      rect(x='118', width='404', height='784', fill='url(#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047)')
+  .relative.pt-6.pb-16.md_pb-20.lg_pb-24.xl_pb-32
+    nav.relative.max-w-screen-xl.mx-auto.flex.items-center.justify-between.px-4.sm_px-6
+      .flex.items-center.flex-1
+        .flex.items-center.justify-between.w-full.md_w-auto
+          a(href='#', aria-label='Home')
+            img.h-8.w-auto.sm_h-10(src=thisApp.ImageUrl, alt='Logo')
+          .-mr-2.flex.items-center.md_hidden
+            button.inline-flex.items-center.justify-center.p-2.rounded-md.text-gray-400.hover_text-gray-500.hover_bg-gray-100.focus_outline-none.focus_bg-gray-100.focus_text-gray-500.transition.duration-150.ease-in-out#main-menu(type='button', aria-label='Main menu', aria-haspopup='true')
+              svg.h-6.w-6(stroke='currentColor', fill='none', viewBox='0 0 24 24')
+                path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M4 6h16M4 12h16M4 18h16')
+        .hidden.md_block.md_ml-10
+          a.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/features') Features
+          a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/pricing') Pricing
+          a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/blog') Blog
+      .hidden.md_block.text-right
+        if !currentUser
+          span.inline-flex.rounded-md.shadow-md
+            span.inline-flex.rounded-md.ring1.ring-black.ring-opacity-5
+              a.inline-flex.items-center.px-4.py-2.border.border-transparent.text-base.leading-6.font-medium.rounded-md.text-indigo-600.bg-white.hover_bg-gray-50.focus_outline-none.focus_border-indigo-300.focus_ring-indigo.transition.duration-150.ease-in-out(href='/login').
+                Log in
+          span.inline-flex.rounded-md.ring1.ring-black.ring-opacity-5.ml-3
+            a.whitespace-nowrap.inline-flex.items-center.justify-center.px-4.py-2.border.border-transparent.text-base.leading-6.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.ease-in-out.duration-150(href='/signup').
+              Sign up
+        else
+          .ml-3.relative(@click.away='open = false', x-data='{ open: false }')
+            div
+              button.max-w-xs.flex.items-center.text-sm.rounded-full.focus_outline-none.focus_ring#user-menu(@click='open = !open', aria-label='User menu', aria-haspopup='true', x-bind_aria-expanded='open')
+                include user-thumb.pug
+                +user_thumb_img(currentUser)
+                //-img.h-8.w-8.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', alt='')
+            .origin-top-right.absolute.right-0.mt-2.w-48.rounded-md.shadow-lg(x-show='open', x-description='Profile dropdown panel, show/hide based on dropdown state.', x-transition_enter='transition ease-out duration-100', x-transition_enter-start='transform opacity-0 scale-95', x-transition_enter-end='transform opacity-100 scale-100', x-transition_leave='transition ease-in duration-75', x-transition_leave-start='transform opacity-100 scale-100', x-transition_leave-end='transform opacity-0 scale-95', style='display: none;')
+              .py-1.rounded-md.bg-white.ring1.ring-black.ring-opacity-5(role='menu', aria-orientation='vertical', aria-labelledby='user-menu')
+                a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
+                if currentUser.appUser.is_admin
+                  a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
+                  button.w-full.grid.grid-col-12.gap-y-5.gap-x-2.block.px-4.py-2.text-right.focus_outline-none.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(onclick=`goto_app(${thisApp.app_external_domain_enabled}, '${thisApp.app_external_domain}')`, role='menuitem') App Dashboard
+                a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/logout', role='menuitem') Sign out
+          //-
+            Mobile menu, show/hide based on menu open state.
+            Entering: "duration-150 ease-out"
+              From: "opacity-0 scale-95"
+              To: "opacity-100 scale-100"j
+            Leaving: "duration-100 ease-in"
+              From: "opacity-100 scale-100"
+              To: "opacity-0 scale-95"
+    .absolute.top-0.inset-x-0.p-2.transition.transform.origin-top-right.md_hidden
+      .rounded-lg.shadow-md
+        .rounded-lg.bg-white.ring1.ring-black.ring-opacity-5.overflow-hidden(role='menu', aria-orientation='vertical', aria-labelledby='main-menu')
+          .px-5.pt-4.flex.items-center.justify-between
+            div
+              img.h-8.w-auto(src='https://tailwindui.com/img/logos/workflow-mark-on-white.svg', alt)
+            .-mr-2
+              button.inline-flex.items-center.justify-center.p-2.rounded-md.text-gray-400.hover_text-gray-500.hover_bg-gray-100.focus_outline-none.focus_bg-gray-100.focus_text-gray-500.transition.duration-150.ease-in-out(type='button', aria-label='Close menu')
+                svg.h-6.w-6(stroke='currentColor', fill='none', viewBox='0 0 24 24')
+                  path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M6 18L18 6M6 6l12 12')
+          .px-2.pt-2.pb-3
+            a.block.px-3.py-2.rounded-md.text-base.font-medium.text-gray-700.hover_text-gray-900.hover_bg-gray-50.focus_outline-none.focus_text-gray-900.focus_bg-gray-50.transition.duration-150.ease-in-out(href='/features', role='menuitem') Features
+            a.mt-1.block.px-3.py-2.rounded-md.text-base.font-medium.text-gray-700.hover_text-gray-900.hover_bg-gray-50.focus_outline-none.focus_text-gray-900.focus_bg-gray-50.transition.duration-150.ease-in-out(href='/pricing', role='menuitem') Pricing
+            a.mt-1.block.px-3.py-2.rounded-md.text-base.font-medium.text-gray-700.hover_text-gray-900.hover_bg-gray-50.focus_outline-none.focus_text-gray-900.focus_bg-gray-50.transition.duration-150.ease-in-out(href='/blog', role='menuitem') Blog
+          div
+            a.block.w-full.px-5.py-3.text-center.font-medium.text-indigo-600.bg-gray-50.hover_bg-gray-100.hover_text-indigo-700.focus_outline-none.focus_bg-gray-100.focus_text-indigo-700.transition.duration-150.ease-in-out(href='#', role='menuitem').
+              Log in
