@@ -19,6 +19,7 @@ html
           .max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
             h1.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, Polite Popup Admin
         main
+          - let tplid = null
           if currentUser.appUser.is_admin == true
             .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-5
               //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
@@ -37,12 +38,12 @@ html
                     p.mt-1.text-sm.text-gray-500.
                       CSS, JS, PNG, JPG, GIF up to 4MB
                 script(src='/javascripts/data-transfer-files-promise.js')
-                div(hidden id="data-upload", data-foldername=template.id, data-templateId=template.id)
+                div(hidden id="data-upload", data-foldername=tplid, data-templateId=tplid)
                 //- This is only used for single file uploads.
                 input(id="file0", name="file0", type="file", hidden, value=formData ? formData.file0 : null)
                 .flex.justify-start
                   span.mt-3.inline-flex.rounded-md.shadow-sm
-                    button(onclick=`deleteAssets('${template.id}')`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out Delete All Assets
+                    button(onclick=`deleteAssets('${tplid}')`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out Delete All Assets
                 .mt-8.border-t.border-gray-200.pt-5
             .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
               //  Replace with your content 
@@ -72,9 +73,23 @@ html
                                   .ml-4
                                     button(type="button", onclick=`deleteAsset('${file.id}')`).inline-flex.items-center.px-3.py-2.border.border-transparent.text-sm.leading-4.font-medium.rounded-md.text-pink-700.bg-pink-100.hover_bg-pink-50.focus_outline-none.focus_border-pink-300.focus_ring-pink.active_bg-pink-200.transition.ease-in-out.duration-150
                                       | Delete
+            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+              div(hidden id="data-file-contents", data-file-contents=renderFile)
+              div(hidden id="data-template-id", data-template-id=tplid, data-page-id=null)
+              .mt-8.border-t.border-gray-200.pt-5
+                .flex.justify-end
+                  span.inline-flex.rounded-md.shadow-sm
+                    a.py-2.px-4.border.border-gray-300.rounded-md.text-sm.leading-5.font-medium.text-gray-700.hover_text-gray-500.focus_outline-none.focus_border-blue-300.focus_ring-blue.active_bg-gray-50.active_text-gray-800.transition.duration-150.ease-in-out(href='/dashboard/templates/'+ tplid + "/pages").
+                      Cancel
+                  span.ml-3.inline-flex.rounded-md.shadow-sm
+                    button.inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit', id="editor_submit") Save
+                div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
+                  div(id="editor").absolute.inset-x-0.top-0.h-screen
+
     include ./common/app-footer.pug
     +footer()
     script(src=asset('javascripts/templates.js'))
     script(src=asset('javascripts/data-transfer-files-promise.js'))
     script(src=asset('javascripts/asset-upload.js'))
     script(src=asset("javascripts/src-min-noconflict/ace.js"), crossorigin="anonymous")
+    script(src=asset('javascripts/create-tpage.js'))
