@@ -72,3 +72,7 @@ html
                                   .ml-4
                                     button(type="button", onclick=`deleteAsset('${file.id}')`).inline-flex.items-center.px-3.py-2.border.border-transparent.text-sm.leading-4.font-medium.rounded-md.text-pink-700.bg-pink-100.hover_bg-pink-50.focus_outline-none.focus_border-pink-300.focus_ring-pink.active_bg-pink-200.transition.ease-in-out.duration-150
                                       | Delete
+    include ./common/app-footer.pug
+    +footer()
+    script(src=asset('javascripts/templates.js'))
+    script(src=asset('javascripts/asset-upload.js'))
