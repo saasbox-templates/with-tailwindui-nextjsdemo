@@ -1,0 +1,26 @@
+//  This example requires Tailwind CSS v2.0+ 
+//
+  
+    This example requires updating your template:
+  
+    ```
+    <html class="h-full">
+    <body class="h-full">
+    ```
+html
+  include common/app-head.pug
+  +head("Welcome to Polite Popup")  
+  body
+    .min-h-full
+      include common/app-navbar.pug
+      +app-navbar()
+      .py-10
+        header
+          .max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
+            h1.text-3xl.font-bold.leading-tight.text-gray-900 Dashboard
+        main
+          .max-w-7xl.mx-auto.sm_px-6.lg_px-8
+            //  Replace with your content 
+            .px-4.py-8.sm_px-0
+              .border-4.border-dashed.border-gray-200.rounded-lg.h-96
+            //  /End replace 

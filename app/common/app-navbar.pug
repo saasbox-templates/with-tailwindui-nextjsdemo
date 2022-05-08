@@ -9,16 +9,14 @@ mixin app-navbar()
           .hidden.sm_-my-px.sm_ml-6.sm_flex.sm_space-x-8
             //  Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
             a.border-indigo-500.text-gray-900.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='#' aria-current='page') Dashboard 
-            a.border-transparent.text-gray-500.hover_border-gray-300.hover_text-gray-700.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='#') Team 
-            a.border-transparent.text-gray-500.hover_border-gray-300.hover_text-gray-700.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='#') Projects 
-            a.border-transparent.text-gray-500.hover_border-gray-300.hover_text-gray-700.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='#') Calendar 
+            a.border-transparent.text-gray-500.hover_border-gray-300.hover_text-gray-700.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='/app/test') Test Popup
         .hidden.sm_ml-6.sm_flex.sm_items-center
           //-button.bg-white.p-1.rounded-full.text-gray-400.hover_text-gray-500.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button')
             span.sr-only View notifications
             //  Heroicon name: outline/bell 
             svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' aria-hidden='true')
               path(stroke-linecap='round' stroke-linejoin='round' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9')
-          //  Profile dropdown 
+          //  Profile dropdown - existing/works with alpine js
           .ml-3.relative(@click.away='open = false', x-data='{ open: false }')
             div
               button.max-w-xs.bg-white.flex.items-center.text-sm.rounded-full.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500#user-menu(@click='open = !open', aria-label='User menu', aria-haspopup='true', x-bind_aria-expanded='open')
@@ -62,7 +60,8 @@ mixin app-navbar()
               a.block.px-4.py-2.text-sm.text-gray-700#user-menu-item-0(href='#' role='menuitem' tabindex='-1') Your Profile 
               a.block.px-4.py-2.text-sm.text-gray-700#user-menu-item-1(href='#' role='menuitem' tabindex='-1') Settings 
               a.block.px-4.py-2.text-sm.text-gray-700#user-menu-item-2(href='#' role='menuitem' tabindex='-1') Sign out 
-        .-mr-2.flex.items-center.sm_hidden
+        // existing snippet
+        //-.-mr-2.flex.items-center.sm_hidden
           //  Mobile menu button 
           button.bg-white.inline-flex.items-center.justify-center.p-2.rounded-md.text-gray-400.hover_text-gray-500.hover_bg-gray-100.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button' aria-controls='mobile-menu' aria-expanded='false')
             span.sr-only Open main menu
@@ -87,22 +86,25 @@ mixin app-navbar()
       .pt-2.pb-3.space-y-1
         //  Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" 
         a.bg-indigo-50.border-indigo-500.text-indigo-700.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='#' aria-current='page') Dashboard 
-        a.border-transparent.text-gray-600.hover_bg-gray-50.hover_border-gray-300.hover_text-gray-800.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='#') Team 
-        a.border-transparent.text-gray-600.hover_bg-gray-50.hover_border-gray-300.hover_text-gray-800.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='#') Projects 
-        a.border-transparent.text-gray-600.hover_bg-gray-50.hover_border-gray-300.hover_text-gray-800.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='#') Calendar 
+        a.border-transparent.text-gray-600.hover_bg-gray-50.hover_border-gray-300.hover_text-gray-800.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='/app/test') Test Popup
       .pt-4.pb-3.border-t.border-gray-200
         .flex.items-center.px-4
           .flex-shrink-0
-            img.h-10.w-10.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' alt)
+            include user-thumb-mobile.pug
+            +user_thumb_img_mobile(currentUser)
+            //-img.h-10.w-10.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' alt)
           .ml-3
-            .text-base.font-medium.text-gray-800 Tom Cook
-            .text-sm.font-medium.text-gray-500 tom@example.com
-          button.ml-auto.bg-white.flex-shrink-0.p-1.rounded-full.text-gray-400.hover_text-gray-500.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button')
+            .text-base.font-medium.text-gray-800 #{currentUser.firstname} #{currentUser.lastname}
+            .text-sm.font-medium.text-gray-500 #{currentUser.email}
+          //-button.ml-auto.bg-white.flex-shrink-0.p-1.rounded-full.text-gray-400.hover_text-gray-500.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button')
             span.sr-only View notifications
             //  Heroicon name: outline/bell 
             svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' aria-hidden='true')
               path(stroke-linecap='round' stroke-linejoin='round' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9')
         .mt-3.space-y-1
-          a.block.px-4.py-2.text-base.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(href='#') Your Profile 
-          a.block.px-4.py-2.text-base.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(href='#') Settings 
-          a.block.px-4.py-2.text-base.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(href='#') Sign out 
+          a.block.px-4.py-2.text-base.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile 
+          if currentUser.appUser.is_admin
+            a.block.px-4.py-2.text-base.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(href='#') Admin Dashboard
+          button.block.px-4.py-2.text-base.w-full.text-left.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(onclick=`goto_app(${thisApp.app_external_domain_enabled}, '${thisApp.app_external_domain}')`) App Dashboard
+          
+          a.block.px-4.py-2.text-base.font-medium.text-gray-500.hover_text-gray-800.hover_bg-gray-100(href='/signout') Sign out 
