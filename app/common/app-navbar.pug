@@ -30,7 +30,7 @@ mixin app-navbar()
                 a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
                 if currentUser.appUser.is_admin
                   a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
-                  button.w-full.grid.grid-col-12.gap-y-5.gap-x-2.block.px-4.py-2.text-right.focus_outline-none.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(onclick=`goto_app(${thisApp.app_external_domain_enabled}, '${thisApp.app_external_domain}')`, role='menuitem') App Dashboard
+                  button.block.px-4.w-full.text-left.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(onclick=`goto_app(${thisApp.app_external_domain_enabled}, '${thisApp.app_external_domain}')`, role='menuitem') App Dashboard
                 a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/logout', role='menuitem') Sign out
           //-
             Mobile menu, show/hide based on menu open state.
