@@ -19,7 +19,29 @@ mixin app-navbar()
             svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' aria-hidden='true')
               path(stroke-linecap='round' stroke-linejoin='round' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9')
           //  Profile dropdown 
-          .ml-3.relative
+          .ml-3.relative(@click.away='open = false', x-data='{ open: false }')
+            div
+              button.max-w-xs.bg-white.flex.items-center.text-sm.rounded-full.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500#user-menu(@click='open = !open', aria-label='User menu', aria-haspopup='true', x-bind_aria-expanded='open')
+                include user-thumb.pug
+                +user_thumb_img(currentUser)
+                //-img.h-8.w-8.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', alt='')
+            .origin-top-right.absolute.right-0.mt-2.w-48.rounded-md.shadow-lg(x-show='open', x-description='Profile dropdown panel, show/hide based on dropdown state.', x-transition_enter='transition ease-out duration-100', x-transition_enter-start='transform opacity-0 scale-95', x-transition_enter-end='transform opacity-100 scale-100', x-transition_leave='transition ease-in duration-75', x-transition_leave-start='transform opacity-100 scale-100', x-transition_leave-end='transform opacity-0 scale-95', style='display: none;')
+              .py-1.rounded-md.bg-white.ring1.ring-black.ring-opacity-5(role='menu', aria-orientation='vertical', aria-labelledby='user-menu')
+                a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
+                if currentUser.appUser.is_admin
+                  a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
+                  button.w-full.grid.grid-col-12.gap-y-5.gap-x-2.block.px-4.py-2.text-right.focus_outline-none.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(onclick=`goto_app(${thisApp.app_external_domain_enabled}, '${thisApp.app_external_domain}')`, role='menuitem') App Dashboard
+                a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/logout', role='menuitem') Sign out
+          //-
+            Mobile menu, show/hide based on menu open state.
+            Entering: "duration-150 ease-out"
+              From: "opacity-0 scale-95"
+              To: "opacity-100 scale-100"j
+            Leaving: "duration-100 ease-in"
+              From: "opacity-100 scale-100"
+              To: "opacity-0 scale-95"
+          //- The original profile in the snippet without any js:
+          //-.ml-3.relative
             div
               button.max-w-xs.bg-white.flex.items-center.text-sm.rounded-full.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500#user-menu-button(type='button' aria-expanded='false' aria-haspopup='true')
                 span.sr-only Open user menu
