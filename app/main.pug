@@ -20,9 +20,9 @@ html
             h1.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, Polite Popup Admin
         main
           if currentUser.appUser.is_admin == true
-            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-              h1.text-2xl.font-semibold.text-gray-900 Assets
-              h4.text-gray-600 Upload Your Static Assets
+            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-5
+              //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
+              h4.text-gray-600 Upload your library assets below
             .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
               .py-3
                 div(id="dropzone").flex.justify-center.px-6.pt-5.pb-6.border-2.border-gray-300.border-dashed.rounded-md.transition.duration-100.ease-in-out.hover_bg-indigo-50.hover_border-indigo-300
@@ -39,7 +39,7 @@ html
                 script(src='/javascripts/data-transfer-files-promise.js')
                 div(hidden id="data-upload", data-foldername=template.id, data-templateId=template.id)
                 //- This is only used for single file uploads.
-                input(id="file0", name="file0", type="file", hidden, value=formData.file0)
+                input(id="file0", name="file0", type="file", hidden, value=formData ? formData.file0 : null)
                 .flex.justify-start
                   span.mt-3.inline-flex.rounded-md.shadow-sm
                     button(onclick=`deleteAssets('${template.id}')`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out Delete All Assets
@@ -49,7 +49,7 @@ html
               .py-4
                 .flex.flex-col
                   div(id="table_parent").-my-2.py-2.overflow-x-auto.sm_-mx-6.sm_px-6.lg_-mx-8.lg_px-8
-                    if template.Assets.length > 0
+                    if assets && assets.length > 0
                       div(id="table_container").align-middle.inline-block.min-w-full.shadow.overflow-hidden.sm_rounded-lg.border-b.border-gray-200
                         table(id="table").min-w-full
                           thead
