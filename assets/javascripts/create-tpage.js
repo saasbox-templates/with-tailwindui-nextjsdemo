@@ -19,7 +19,7 @@ $(document).ready (function(){
 		//editor.getSession().setTabSize(2);
     	//editor.getSession().setUseSoftTabs(true);
     }
-	editor.setOptions({minLines: 60});
+	editor.setOptions({minLines: 20});
 
 	if (file_contents) {
 		editor.setValue(file_contents, -1);
