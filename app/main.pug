@@ -76,6 +76,8 @@ html
             .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
               div(hidden id="data-file-contents", data-file-contents=renderFile)
               div(hidden id="data-template-id", data-template-id=tplid, data-page-id=null)
+              div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
+                div(id="editor").col-span-6
               .mt-8.border-t.border-gray-200.pt-5
                 .flex.justify-end
                   span.inline-flex.rounded-md.shadow-sm
@@ -83,9 +85,6 @@ html
                       Cancel
                   span.ml-3.inline-flex.rounded-md.shadow-sm
                     button.inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit', id="editor_submit") Save
-                div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
-                  div(id="editor").absolute.inset-x-0.top-0.h-screen
-
     include ./common/app-footer.pug
     +footer()
     script(src=asset('javascripts/templates.js'))
