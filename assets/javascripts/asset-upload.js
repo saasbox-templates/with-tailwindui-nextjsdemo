@@ -117,7 +117,7 @@ const createFileObject = function(file_meta, file_prefix) {
     return new Promise((resolve, reject) => {
         $.ajax({
             // Submit file type, create file instance with unique path, get both read/write URLs.
-            url: '/create_file',
+            url: 'https://thinner.onrender.com/create-asset',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: JSON.stringify({file_meta, file_prefix}),
