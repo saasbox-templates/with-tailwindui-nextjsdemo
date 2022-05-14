@@ -35,8 +35,9 @@ $(document).ready (function(){
 	});*/
 	editor.resize();
 
+	// FIXME: This should either be an api call and update the page with form submission result.
     // Plain form submit and save button
-	document.getElementById("editor_submit").onclick = function(e) {
+	/*document.getElementById("editor_submit").onclick = function(e) {
 		e.preventDefault();
 		let text = editor.getSession().getValue()
 		let elem = document.createElement('textarea');
@@ -46,5 +47,29 @@ $(document).ready (function(){
 		form = document.getElementById("page_form");
 		form.appendChild(elem);
 		form.submit();
-	};
+	};*/
+	document.getElementById("editor_submit").onclick = function(e) {
+		e.preventDefault();
+		let text = editor.getSession().getValue()
+		let jwt = $("#token").attr("data-token");
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            // Submit file type, create file instance with unique path, get both read/write URLs.
+            url: "https://thinner.onrender.com/save-script-template",
+            contentType: 'application/json; charset=utf-8',
+            headers: { Authorization: "Bearer " + jwt },
+            dataType: 'json',
+            data: JSON.stringify({editor_content: text }),
+            type: 'POST',
+            success: ((res) => {
+                console.log("Saved editor text content successfully: \n", res.msg);
+                resolve(res);
+            }),
+            error: ((err) => {
+                console.log("Something wrong saving editor content. Error:", err)
+                reject(err);
+            }),
+        });
+    });
+  }
 });

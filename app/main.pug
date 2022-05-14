@@ -20,6 +20,8 @@ html
             h1.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, Polite Popup Admin
         main
           - let folderid = "politepopup-test";
+          //- JWT that identifies this user:
+          div(hidden, id="token", data-token=token)
           if currentUser.appUser.is_admin == true
             .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-5
               //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload

@@ -114,11 +114,13 @@ $(document).ready (function(){
 
 
 const createFileObject = function(file_meta, file_prefix) {
+    let jwt = $("#token").attr("data-token");
     return new Promise((resolve, reject) => {
         $.ajax({
             // Submit file type, create file instance with unique path, get both read/write URLs.
             url: 'https://thinner.onrender.com/create-asset',
             contentType: 'application/json; charset=utf-8',
+            headers: { Authorization: "Bearer " + jwt },
             dataType: 'json',
             data: JSON.stringify({file_meta, file_prefix}),
             type: 'POST',
@@ -234,11 +236,13 @@ const attachDomNewFile = function(url, name, id, type) {
 const declareAssetValid = function(file) {
     const tplId = $("#data-upload").attr("data-templateId");
     const fileId = file.id;
+    let jwt = $("#token").attr("data-token");
     return new Promise((resolve, reject) => {
         $.ajax({
             // Submit file type, create file instance with unique path, get both read/write URLs.
             url: "/dashboard/templates/" + tplId + "/declare-asset-valid",
             contentType: 'application/json; charset=utf-8',
+            headers: { Authorization: "Bearer " + jwt },
             dataType: 'json',
             data: JSON.stringify({fileId}),
             type: 'POST',
