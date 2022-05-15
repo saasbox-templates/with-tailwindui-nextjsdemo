@@ -193,7 +193,7 @@ const declareAssetValid = function(file) {
             contentType: 'application/json; charset=utf-8',
             headers: { Authorization: "Bearer " + jwt },
             dataType: 'json',
-            data: JSON.stringify({fileId}),
+            data: JSON.stringify({id: fileId}),
             type: 'POST',
             success: ((res) => {
                 console.log("declareAssetValid msg:", res.msg);
