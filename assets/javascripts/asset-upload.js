@@ -189,7 +189,7 @@ const declareAssetValid = function(file) {
     return new Promise((resolve, reject) => {
         $.ajax({
             // Submit file type, create file instance with unique path, get both read/write URLs.
-            url: "https://thinner.onrender.com/declare-asset-valid,
+            url: "https://thinner.onrender.com/declare-asset-valid",
             contentType: 'application/json; charset=utf-8',
             headers: { Authorization: "Bearer " + jwt },
             dataType: 'json',
