@@ -62,57 +62,6 @@ function deleteAsset(fileId) {
     });
 }
 
-$(document).ready (function(){
-    const dropzone = document.querySelector('#dropzone')
-    
-    dropzone.addEventListener('dragover', evt => evt.preventDefault())
-    
-    dropzone.addEventListener('drop', event => {
-        event.preventDefault()
-        const items = event.dataTransfer.items
-        window.getFilesFromDataTransferItems(items).then(files => {
-            //console.log(files[0].filepath)
-            console.log('files', files)
-            let promises = [];
-            files.forEach((file, i) => {
-              console.log(i, file.filepath)
-              promises.push(uploadFile(file));
-            });
-            return Promise.all(promises);
-        })
-    }, false) 
-
-// In-place string format function. TODO: check license
-    if (!String.format) {
-      String.format = function(format) {
-        var args = Array.prototype.slice.call(arguments, 1);
-        return format.replace(/{(\d+)}/g, function(match, number) { 
-          return typeof args[number] != 'undefined'
-            ? args[number] 
-            : match
-          ;
-        });
-      };
-    }
-
-  var file_meta = {};
-
-
-  document.getElementById('upload0').onclick = function () {
-    $('#file0').trigger("click");
-  }
-
-  document.getElementById('upload1').onclick = function () {
-    $('#file0').trigger("click");
-  }
-
-  $('#file0').on('change', function() {
-    console.log("file:",this.files[0]);
-    this.files[0].filepath = this.files[0].name;
-    uploadFile(this.files[0])
-  })
-
-
 const createFileObject = function(file_meta, file_prefix) {
     let jwt = $("#token").attr("data-token");
     return new Promise((resolve, reject) => {
@@ -279,5 +228,58 @@ const uploadFile = function(file) {
         }).catch(error => { console.log("Error completing completeUpload:", error) });
     }).catch(error => { console.log("Error completing createfileObject:", error) });
 }
+
+$(document).ready (function(){
+    const dropzone = document.querySelector('#dropzone')
+    
+    dropzone.addEventListener('dragover', evt => evt.preventDefault())
+    
+    dropzone.addEventListener('drop', event => {
+        event.preventDefault()
+        const items = event.dataTransfer.items
+        window.getFilesFromDataTransferItems(items).then(files => {
+            //console.log(files[0].filepath)
+            console.log('files', files)
+            let promises = [];
+            files.forEach((file, i) => {
+              console.log(i, file.filepath)
+              promises.push(uploadFile(file));
+            });
+            return Promise.all(promises);
+        })
+    }, false) 
+
+// In-place string format function. TODO: check license
+    if (!String.format) {
+      String.format = function(format) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        return format.replace(/{(\d+)}/g, function(match, number) { 
+          return typeof args[number] != 'undefined'
+            ? args[number] 
+            : match
+          ;
+        });
+      };
+    }
+
+  var file_meta = {};
+
+
+  document.getElementById('upload0').onclick = function () {
+    $('#file0').trigger("click");
+  }
+
+  document.getElementById('upload1').onclick = function () {
+    $('#file0').trigger("click");
+  }
+
+  $('#file0').on('change', function() {
+    console.log("file:",this.files[0]);
+    this.files[0].filepath = this.files[0].name;
+    uploadFile(this.files[0])
+  })
+
+
+
 
 });
