@@ -183,9 +183,9 @@ const attachDomNewFile = function(url, name, id, type) {
 }
 
 const declareAssetValid = function(file) {
-    const tplId = $("#data-upload").attr("data-templateId");
     const fileId = file.id;
     let jwt = $("#token").attr("data-token");
+    console.log("declareAssetValid, with id:", fileId);
     return new Promise((resolve, reject) => {
         $.ajax({
             // Submit file type, create file instance with unique path, get both read/write URLs.
@@ -208,6 +208,7 @@ const declareAssetValid = function(file) {
 }
 
 const requestInvalidation = function() {
+    let jwt = $("#token").attr("data-token");
     const file_prefix = $("#data-upload").attr("data-foldername");
     return new Promise((resolve, reject) => {
         $.ajax({
