@@ -268,7 +268,10 @@ $(document).ready (function(){
               console.log(i, file.filepath)
               promises.push(uploadFile(file));
             });
-            return Promise.all(promises);
+            return Promise.all(promises).then(uploaded => {
+                // Request single invalidation for all paths in current folder. (There is only one folder)
+                return requestInvalidation();
+            });
         })
     }, false) 
 
@@ -299,7 +302,10 @@ $(document).ready (function(){
   $('#file0').on('change', function() {
     console.log("file:",this.files[0]);
     this.files[0].filepath = this.files[0].name;
-    uploadFile(this.files[0])
+    uploadFile(this.files[0]).then(uploaded => {
+        // Request single invalidation for all paths in current folder. (There is only one folder)
+        return requestInvalidation();
+    })
   })
 
 
