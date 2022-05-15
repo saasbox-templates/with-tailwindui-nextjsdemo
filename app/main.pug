@@ -108,9 +108,6 @@ html
               success: ((res) => {
                   let user_data = res.user_data;
                   let assets;
-                  let input = document.getElementById('domain_input');
-                  input.value = user_data.domain;
-                  console.log("User data:", user_data);
                   
                   // Set admin data here, e.g. populate assets table:
                   if (user_data.is_admin == true) {
@@ -123,7 +120,10 @@ html
                     if (user_data.editor_contents) {
                       $("#data-file-contents").attr("data-file-contents", user_data.editor_contents)
                     }
-                  } else {
+                  } else {  
+                    let input = document.getElementById('domain_input');
+                    input.value = user_data.domain;
+                    console.log("User data:", user_data);
                     // This is a regular user, fetch his/her data.
                     $("#api_key_text").text(user_data.api_key);
                     // console.log(res);
