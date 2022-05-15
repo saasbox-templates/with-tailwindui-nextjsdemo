@@ -107,14 +107,16 @@ html
               type: 'POST',
               success: ((res) => {
                   let user_data = res.user_data;
+                  let assets;
                   let input = document.getElementById('domain_input');
                   input.value = user_data.domain;
                   console.log("User data:", user_data);
                   
                   // Set admin data here, e.g. populate assets table:
                   if (user_data.is_admin == true) {
+                    assets = res.assets;
                     // Show list of assets
-                    for (let i = 0; i < user_data.assets; i++) {
+                    for (let i = 0; i < assets; i++) {
                       attachDomNewFile(assets[i].url, assets[i].path, assets[i].id, assets[i].type);
                     }
                     // Store file contents in html for editor to pick up during its init:
