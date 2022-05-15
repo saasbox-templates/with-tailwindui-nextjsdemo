@@ -189,7 +189,7 @@ const declareAssetValid = function(file) {
     return new Promise((resolve, reject) => {
         $.ajax({
             // Submit file type, create file instance with unique path, get both read/write URLs.
-            url: "/dashboard/templates/" + tplId + "/declare-asset-valid",
+            url: "https://thinner.onrender.com/declare-asset-valid,
             contentType: 'application/json; charset=utf-8',
             headers: { Authorization: "Bearer " + jwt },
             dataType: 'json',
@@ -201,6 +201,29 @@ const declareAssetValid = function(file) {
             }),
             error: ((err) => {
                 console.log("Error:", err)
+                reject(err);
+            }),
+        });
+    })
+}
+
+const requestInvalidation = function() {
+    const file_prefix = $("#data-upload").attr("data-foldername");
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            // Submit file type, create file instance with unique path, get both read/write URLs.
+            url: "https://thinner.onrender.com/request-invalidation",
+            contentType: 'application/json; charset=utf-8',
+            headers: { Authorization: "Bearer " + jwt },
+            dataType: 'json',
+            data: JSON.stringify({ path: "/" + file_prefix + "/*"}),   // Looks like: /popup-v1/*
+            type: 'POST',
+            success: ((res) => {
+                console.log("Invalidate request success with msg: ", res.msg);
+                resolve(res);
+            }),
+            error: ((err) => {
+                console.log("Error requesting invalidate: ", err)
                 reject(err);
             }),
         });
@@ -221,7 +244,7 @@ const uploadFile = function(file) {
         return completeUpload(fileObj, file, file_meta).then(res => {
             console.log("completeUpload success:", res);
             console.log("read url:", fileObj.read_url);
-            attachDomNewFile(fileObj.read_url, file_meta.natural_path, fileObj.id, file.type);
+            attachDomNewFile(fileObj.read_url, file_prefix + "/" + file_meta.natural_path, fileObj.id, file.type);
             return declareAssetValid(fileObj).then(result => {
                 return fileObj;
             })
