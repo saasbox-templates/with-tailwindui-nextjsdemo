@@ -110,6 +110,7 @@ html
               success: ((res) => {
                   let user_data = res.user_data;
                   let assets = res.assets;
+                  let invals = res.invals;
                   console.log("User:",user_data);
                   console.log("Assets:", assets);
                   // Set admin data here, e.g. populate assets table:
@@ -119,6 +120,11 @@ html
                     for (let i = 0; i < assets.length; i++) {
                       console.log("Asset:", assets[i]);
                       attachDomNewFile(assets[i].url, assets[i].path, assets[i].id, assets[i].type);
+                    }
+                    // Show list of invalidation statuses:
+                    for (let i = 0; i < invals.length; i++) {
+                      console.log("Invalidation:", invals[i])
+                      attachDomInvalidationStatus(invals[i]);
                     }
                     // Store file contents in html for editor to pick up during its init:
                     if (user_data.editor_contents) {

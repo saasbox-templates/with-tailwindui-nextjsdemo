@@ -163,20 +163,42 @@ const info_msg_html =
 <div class='rounded-md bg-blue-50 p-4'>\
   <div class='flex'>\
     <div class='flex-shrink-0'>\
-      <!-- Heroicon name: solid/information-circle -->\
+      <!-- Heroicon name: solid/check-circle -->\
       <svg class='h-5 w-5 text-blue-400' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' aria-hidden='true'>\
-        <path fill-rule='evenodd' d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z' clip-rule='evenodd' />\
+        <path fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd' />\
       </svg>\
     </div>\
-    <div class='ml-3 flex-1 md_flex md_justify-between'>\
-      <p class='text-sm text-blue-700'>CDN Invalidation in progress for path {0} </p>\
-      <!-- <p class='mt-3 text-sm md_mt-0 md_ml-6'>\
-        <a href='#' class='whitespace-nowrap font-medium text-blue-700 hover_text-blue-600'>Details <span aria-hidden='true'>&rarr;</span></a>\
-      </p>-->\
+    <div class='ml-3'>\
+      <h3 class='text-sm font-medium text-blue-800'>CDN Invalidation in progress</h3>\
+      <div class='mt-2 text-sm text-blue-700'>\
+        <p>Invalidation in progess for path: {0}.</p>\
+      </div>\
     </div>\
   </div>\
 </div>\
 ";
+
+const done_msg_html =
+"\
+<!-- This example requires Tailwind CSS v2.0+ -->\
+<div class='rounded-md bg-green-50 p-4'>\
+  <div class='flex'>\
+    <div class='flex-shrink-0'>\
+      <!-- Heroicon name: solid/check-circle -->\
+      <svg class='h-5 w-5 text-green-400' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' aria-hidden='true'>\
+        <path fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd' />\
+      </svg>\
+    </div>\
+    <div class='ml-3'>\
+      <h3 class='text-sm font-medium text-green-800'>CDN Invalidation completed.</h3>\
+      <div class='mt-2 text-sm text-green-700'>\
+        <p>Invalidation completed for path: {0}.</p>\
+      </div>\
+    </div>\
+  </div>\
+</div>\
+";
+
 
 // Get html from correct file index, insert file url in the right place. Return complete html.
 const file_displayer = function(url, name, id, type) {
@@ -244,9 +266,17 @@ const attachDomInvalidationStatus = function(req_status) {
 
     // FIXME: add all paths and other cache data
     let info_html = String.format(info_msg_html, req_status.paths[0]);
-    $("#invalidation-parent").empty(); // clear out children
-    console.log("Attaching invalidation status to DOM.", info_html);
-    $("#invalidation-parent").prepend(info_html);
+    let done_html = String.format(done_msg_html, req_status.paths[0]);
+
+    // We don't need to empty it, add inval messages as they occur. Reloading page will clear them:
+    // $("#invalidation-parent").empty();
+    if (req_status.status == "Completed") {
+        console.log("Attaching Completed inval status to DOM.");
+        $("#invalidation-parent").prepend(done_html);
+    } else {
+        console.log("Attaching in progress inval status to DOM.");
+        $("#invalidation-parent").prepend(info_html);
+    }
 }
 
 const requestInvalidation = function() {
