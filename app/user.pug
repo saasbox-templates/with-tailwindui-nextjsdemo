@@ -17,74 +17,29 @@ html
       .py-10
         header
           .max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
-            h1.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, Polite Popup Admin
+            h1.text-3xl.font-bold.leading-tight.text-gray-900 Welcome to Polite Popup, #{user.firstname}.
         main
-          - let folderid = "politepopup-test";
           //- JWT that identifies this user:
           div(hidden, id="token", data-token=token)
-          if currentUser.appUser.is_admin == true
-            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-5
-              //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
-              h4.text-gray-600 Upload your library assets below
-            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-              .py-3
-                div(id="dropzone").flex.justify-center.px-6.pt-5.pb-6.border-2.border-gray-300.border-dashed.rounded-md.transition.duration-100.ease-in-out.hover_bg-indigo-50.hover_border-indigo-300
-                  .text-center
-                    svg(id="upload1", stroke='currentColor' fill='none' viewBox='0 0 48 48').mx-auto.h-12.w-12.text-gray-400.cursor-pointer
-                      path(d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                    p.mt-1.text-md.text-gray-600
-                      | Drag and drop your assets folder here, or
-                      button(type='button', id="upload0").font-medium.text-indigo-600.hover_text-indigo-500.focus_outline-none.focus_underline.transition.duration-150.ease-in-out
-                        | upload a single file  
-                      |  
-                    p.mt-1.text-sm.text-gray-500.
-                      CSS, JS, PNG, JPG, GIF up to 4MB
-                script(src='/javascripts/data-transfer-files-promise.js')
-                div(hidden id="data-upload", data-foldername=folderid, data-templateId=folderid)
-                //- This is only used for single file uploads.
-                input(id="file0", name="file0", type="file", hidden, value=formData ? formData.file0 : null)
-                .flex.justify-start
-                  span.mt-3.inline-flex.rounded-md.shadow-sm
-                    button(onclick=`deleteAssets('${folderid}')`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out Delete All Assets
-                .mt-8.border-t.border-gray-200.pt-5
-                  div(id="invalidation-parent")
-            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-              //  Replace with your content 
-              .py-4
-                .flex.flex-col
-                  div(id="table_parent").-my-2.py-2.overflow-x-auto.sm_-mx-6.sm_px-6.lg_-mx-8.lg_px-8
-                    if assets && assets.length > 0
-                      div(id="table_container").align-middle.inline-block.min-w-full.shadow.overflow-hidden.sm_rounded-lg.border-b.border-gray-200
-                        table(id="table").min-w-full
-                          thead
-                            tr
-                              th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider.
-                                Name
-                              th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider.
-                                Type
-                              th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider.flex.justify-end.
-                                Action
-                          tbody(id="asset-display-parent").bg-white
-                            for file in template.Assets
-                              tr(id=file.id)
-                                td.px-6.py-4.whitespace-nowrap.border-b.border-gray-200
-                                  .flex.items-center
-                                    a(href=file.url).text-indigo-600.hover_text-indigo-900 #{file.filename}
-                                td.px-6.py-4.whitespace-nowrap.border-b.border-gray-200.text-sm.leading-5.text-gray-900
-                                  | #{file.type}
-                                td.px-6.py-4.whitespace-nowrap.border-b.border-gray-200.text-sm.leading-5.text-gray-900.flex.justify-end
-                                  .ml-4
-                                    button(type="button", onclick=`deleteAsset('${file.id}')`).inline-flex.items-center.px-3.py-2.border.border-transparent.text-sm.leading-4.font-medium.rounded-md.text-pink-700.bg-pink-100.hover_bg-pink-50.focus_outline-none.focus_border-pink-300.focus_ring-pink.active_bg-pink-200.transition.ease-in-out.duration-150
-                                      | Delete
-            .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-              div(hidden id="data-file-contents", data-file-contents=renderFile)
-              form(id="page_form" action="https://thinner.onrender.com" + "/save-script-template", method="POST")
-              div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
-                div(id="editor").col-span-6
-              .mt-8.border-t.border-gray-200.pt-5
-                .flex.justify-end
-                  span.ml-3.inline-flex.rounded-md.shadow-sm
-                    button.inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit', id="editor_submit") Save
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-5
+            //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
+            h4.text-gray-600 Configure your popup below
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+            .py-3
+              div
+                label(for="email").block.text-sm.font-medium.text-gray-700
+                  | Options Input #1
+                div.mt-1
+                  input(type="email" name="email" id="email" placeholder="you@example.com").shadow-sm.focus_ring-indigo-500.focus_border-indigo-500.block.w-full.sm_text-sm.border-gray-300.rounded-md
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+            div(hidden id="data-file-contents", data-file-contents=null)
+            form(id="page_form" action="https://thinner.onrender.com" + "/save-options", method="POST")
+            div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
+              div(id="editor").col-span-6
+            .mt-8.border-t.border-gray-200.pt-5
+              .flex.justify-end
+                span.ml-3.inline-flex.rounded-md.shadow-sm
+                  button.inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit', id="editor_submit") Save
     include ./common/app-footer.pug
     +footer()
     script(src=asset('javascripts/templates.js'))
