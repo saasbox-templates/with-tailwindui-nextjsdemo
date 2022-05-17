@@ -59,7 +59,7 @@ $(document).ready (function(){
             contentType: 'application/json; charset=utf-8',
             headers: { Authorization: "Bearer " + jwt },
             dataType: 'json',
-            data: JSON.stringify({editor_content: text }),
+            data: JSON.stringify({editor_contents: text }),
             type: 'POST',
             success: ((res) => {
                 console.log("Saved editor text content successfully: \n", res.msg);
