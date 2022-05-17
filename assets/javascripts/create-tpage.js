@@ -1,7 +1,6 @@
 
+const setup_ace_editor = function() {
 
-$(document).ready (function(){
-	
 	let jscript = `<!-- <script src="https://cdn.politepop.com/v1.0.0-beta/polite-pop.js"></script> -->
     <script src="polite-pop.js?v=3"></script>
     <script>
@@ -13,10 +12,12 @@ $(document).ready (function(){
       });
     </script>`
     // If there is no editor content defined, use default value above to set it.
+    console.log("Reading editor contents now.\n")
     if (!$("#data-file-contents").attr("data-file-contents")) {
    	 	$("#data-file-contents").attr("data-file-contents", jscript);
     }
-  // This is set by another jquery ajax call that fetches admin data.
+
+  	// This is set by another jquery ajax call that fetches admin data.
 	const file_contents = $("#data-file-contents").attr("data-file-contents");
 
 	let editor = ace.edit("editor");
@@ -34,7 +35,11 @@ $(document).ready (function(){
 	    enableBasicAutocompletion: true
 	});*/
 	editor.resize();
+}
 
+$(document).ready (function(){
+	
+	let editor = ace.edit("editor");
 	// FIXME: This should either be an api call and update the page with form submission result.
     // Plain form submit and save button
 	/*document.getElementById("editor_submit").onclick = function(e) {
