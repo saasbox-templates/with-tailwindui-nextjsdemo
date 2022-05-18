@@ -25,12 +25,61 @@ html
             //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
             h4.text-gray-600 Configure your popup below
           .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-            .py-3
-              div
-                label(for="email").block.text-sm.font-medium.text-gray-700
-                  | Options Input #1
-                div.mt-1
-                  input(type="email" name="email" id="email" placeholder="you@example.com").shadow-sm.focus_ring-indigo-500.focus_border-indigo-500.block.w-full.sm_text-sm.border-gray-300.rounded-md
+            .mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.grid-rows-2
+              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
+                .grid.grid-rows-3
+                  //-
+                    politePopHtml
+                    politePopYesText
+                    politePopNoText
+                    politePopScrollPercentageRequired
+                    politePopTimeInSecondsRequired
+                    exitIntentPopHtml
+                    exitIntentPopYesText
+                    exitIntentPopNoText
+                    exitIntentPopScrollPercentageRequired
+                    exitIntentPopTimeInSecondsRequired
+                    modalHtml
+                    modalSubscribeButtonText
+                    modalFormSubmittedSuccessMessage
+                  form(id="options_form", action="https://thinner.onrender.com/post-customer-data", method="POST")
+                    .row-span-1
+                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') PolitePop Yes Text
+                      .mt-1.sm_mt-0.sm_col-span-2
+                        .max-w-lg.flex.rounded-md.shadow-sm
+                          input(id="politePopYesText", name="politePopYesText", type="text", placeholder="www.mydomain.com", value=politePopNoText).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                      if (errors && errors.politePopYesText)
+                        p.mt-2.text-sm.text-red-600
+                          | #{errors.politePopYesText}
+                    .row-span-1
+                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') PolitePop No Text
+                      .mt-1.sm_mt-0.sm_col-span-2
+                        .max-w-lg.flex.rounded-md.shadow-sm
+                          input(id="politePopNoText", name="politePopNoText", type="text", placeholder="www.mydomain.com", value=politePopNoText).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                      if (errors && errorspolitePopNoText)
+                        p.mt-2.text-sm.text-red-600
+                          | #{errors.politePopNoText}
+                    .row-span-1
+                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Scroll percentage required
+                      .mt-1.sm_mt-0.sm_col-span-2
+                        .max-w-lg.flex.rounded-md.shadow-sm
+                          input(id="politePopScrollPercentageRequired", name="politePopScrollPercentageRequired", type="text", placeholder="www.mydomain.com", value=politePopScrollPercentageRequired).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                      if (errors && errors.politePopScrollPercentageRequired)
+                        p.mt-2.text-sm.text-red-600
+                          | #{errors.politePopScrollPercentageRequired}
+                    .row-span-1
+                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Time in seconds required
+                      .mt-1.sm_mt-0.sm_col-span-2
+                        .max-w-lg.flex.rounded-md.shadow-sm
+                          input(id="politePopTimeInSecondsRequired", name="politePopTimeInSecondsRequired", type="text", placeholder="www.mydomain.com", value=politePopTimeInSecondsRequired).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                      if (errors && errors.politePopTimeInSecondsRequired)
+                        p.mt-2.text-sm.text-red-600
+                          | #{errors.politePopTimeInSecondsRequired}
+                    .row-span-2
+                      .mt-8.border-t.border-gray-200.pt-5
+                        .flex.justify-end
+                          span.ml-3.inline-flex.rounded-md.shadow-sm
+                            button(id="domain_button", onclick=`submitDomain()`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit') Save
           .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
             div(hidden id="data-file-contents", data-file-contents=null)
             form(id="page_form" action="https://thinner.onrender.com" + "/save-options", method="POST")
