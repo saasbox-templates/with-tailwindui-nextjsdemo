@@ -24,11 +24,7 @@ html
           .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-5
             //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
             h4.text-gray-600 Configure your popup below
-          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-            .mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.grid-rows-2
-              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
-                .grid.grid-rows-3
-                  //-
+          //-
                     politePopHtml
                     politePopYesText
                     politePopNoText
@@ -42,58 +38,53 @@ html
                     modalHtml
                     modalSubscribeButtonText
                     modalFormSubmittedSuccessMessage
-                  form(id="options_form", action="https://thinner.onrender.com/post-customer-data", method="POST")
-                    .row-span-1
-                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') PolitePop Yes Text
-                      .mt-1.sm_mt-0.sm_col-span-2
-                        .max-w-lg.flex.rounded-md.shadow-sm
-                          input(id="politePopYesText", name="politePopYesText", type="text", placeholder="www.mydomain.com", value=politePopNoText).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
-                      if (errors && errors.politePopYesText)
-                        p.mt-2.text-sm.text-red-600
-                          | #{errors.politePopYesText}
-                    .row-span-1
-                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') PolitePop No Text
-                      .mt-1.sm_mt-0.sm_col-span-2
-                        .max-w-lg.flex.rounded-md.shadow-sm
-                          input(id="politePopNoText", name="politePopNoText", type="text", placeholder="www.mydomain.com", value=politePopNoText).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
-                      if (errors && errorspolitePopNoText)
-                        p.mt-2.text-sm.text-red-600
-                          | #{errors.politePopNoText}
-                    .row-span-1
-                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Scroll percentage required
-                      .mt-1.sm_mt-0.sm_col-span-2
-                        .max-w-lg.flex.rounded-md.shadow-sm
-                          input(id="politePopScrollPercentageRequired", name="politePopScrollPercentageRequired", type="text", placeholder="www.mydomain.com", value=politePopScrollPercentageRequired).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
-                      if (errors && errors.politePopScrollPercentageRequired)
-                        p.mt-2.text-sm.text-red-600
-                          | #{errors.politePopScrollPercentageRequired}
-                    .row-span-1
-                      label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Time in seconds required
-                      .mt-1.sm_mt-0.sm_col-span-2
-                        .max-w-lg.flex.rounded-md.shadow-sm
-                          input(id="politePopTimeInSecondsRequired", name="politePopTimeInSecondsRequired", type="text", placeholder="www.mydomain.com", value=politePopTimeInSecondsRequired).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
-                      if (errors && errors.politePopTimeInSecondsRequired)
-                        p.mt-2.text-sm.text-red-600
-                          | #{errors.politePopTimeInSecondsRequired}
-                    .row-span-2
-                      .mt-8.border-t.border-gray-200.pt-5
-                        .flex.justify-end
-                          span.ml-3.inline-flex.rounded-md.shadow-sm
-                            button(id="domain_button", onclick=`submitDomain()`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit') Save
+          form(id="options_form", action="https://thinner.onrender.com/post-customer-data", method="POST")
+          div(hidden id="data-file-contents", data-file-contents=null)
           .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
-            div(hidden id="data-file-contents", data-file-contents=null)
-            form(id="page_form" action="https://thinner.onrender.com" + "/save-options", method="POST")
-            div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
-              div(id="editor").col-span-6
-            .mt-8.border-t.border-gray-200.pt-5
-              .flex.justify-end
-                span.ml-3.inline-flex.rounded-md.shadow-sm
-                  button.inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out(type='submit', id="editor_submit") Save
+            .mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
+              div(id="editor").col-span-3.flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+            .mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.grid-rows-2
+              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
+                label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') PolitePop Yes Text
+                .mt-1.sm_mt-0.sm_col-span-2
+                  .max-w-lg.flex.rounded-md.shadow-sm
+                    input(id="politePopYesText", name="politePopYesText", type="text", placeholder="www.mydomain.com", value=politePopNoText).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                if (errors && errors.politePopYesText)
+                  p.mt-2.text-sm.text-red-600
+                    | #{errors.politePopYesText}
+              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
+                label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') PolitePop No Text
+                .mt-1.sm_mt-0.sm_col-span-2
+                  .max-w-lg.flex.rounded-md.shadow-sm
+                    input(id="politePopNoText", name="politePopNoText", type="text", placeholder="www.mydomain.com", value=politePopNoText).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                if (errors && errorspolitePopNoText)
+                  p.mt-2.text-sm.text-red-600
+                    | #{errors.politePopNoText}
+      
+              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
+                label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Scroll percentage required
+                .mt-1.sm_mt-0.sm_col-span-2
+                  .max-w-lg.flex.rounded-md.shadow-sm
+                    input(id="politePopScrollPercentageRequired", name="politePopScrollPercentageRequired", type="text", placeholder="www.mydomain.com", value=politePopScrollPercentageRequired).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                if (errors && errors.politePopScrollPercentageRequired)
+                  p.mt-2.text-sm.text-red-600
+                    | #{errors.politePopScrollPercentageRequired}
+              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
+                label.block.text-sm.font-medium.leading-5.text-gray-700(for='description_tag') Time in seconds required
+                .mt-1.sm_mt-0.sm_col-span-2
+                  .max-w-lg.flex.rounded-md.shadow-sm
+                    input(id="politePopTimeInSecondsRequired", name="politePopTimeInSecondsRequired", type="text", placeholder="www.mydomain.com", value=politePopTimeInSecondsRequired).flex-1.focus_ring-indigo-500.focus_border-indigo-500.border-gray-300.rounded-md.block.w-full.min-w-0.rounded-none.rounded-r-md.transition.duration-150.ease-in-out.sm_text-sm.sm_leading-5
+                if (errors && errors.politePopTimeInSecondsRequired)
+                  p.mt-2.text-sm.text-red-600
+                    | #{errors.politePopTimeInSecondsRequired}
+              .col-span-5.col-start-1.sm_col-span-6.sm_col-start-1.mr-5
+                .mt-8.border-t.border-gray-200.pt-5
+                  .flex.justify-end
+                    span.ml-3.inline-flex.rounded-md.shadow-sm
+                      button(id="editor_submit" onclick=`submitDomain()`).inline-flex.justify-center.py-2.px-4.border.border-transparent.text-sm.leading-5.font-medium.rounded-md.text-white.bg-indigo-600.hover_bg-indigo-500.focus_outline-none.focus_border-indigo-700.focus_ring-indigo.active_bg-indigo-700.transition.duration-150.ease-in-out Save
     include ./common/app-footer.pug
     +footer()
-    script(src=asset('javascripts/templates.js'))
-    script(src=asset('javascripts/data-transfer-files-promise.js'))
-    script(src=asset('javascripts/asset-upload.js'))
     script(src=asset("javascripts/src-min-noconflict/ace.js"), crossorigin="anonymous")
     script(src=asset('javascripts/create-tpage.js'))
     script.
@@ -111,40 +102,23 @@ html
               type: 'POST',
               success: ((res) => {
                   let user_data = res.user_data;
-                  let assets = res.assets;
-                  let invals = res.invals;
-                  console.log("User:",user_data);
-                  console.log("Assets:", assets);
-                  // Set admin data here, e.g. populate assets table:
-                  if (user_data.is_admin == true) {
-                    assets = res.assets;
-                    // Show list of assets
-                    for (let i = 0; i < assets.length; i++) {
-                      console.log("Asset:", assets[i]);
-                      attachDomNewFile(assets[i].url, assets[i].path, assets[i].id, assets[i].type);
-                    }
-                    // Show list of invalidation statuses:
-                    for (let i = 0; i < invals.length; i++) {
-                      console.log("Invalidation:", invals[i])
-                      attachDomInvalidationStatus(invals[i]);
-                    }
-                    // Store file contents in html for editor to pick up during its init:
-                    if (user_data.editor_contents) {
-                      console.log("Setting user data with editor contents:", user_data.editor_contents);
-                      $("#data-file-contents").attr("data-file-contents", user_data.editor_contents)
-                    }
-                    setup_ace_editor();
-                  } else {  
-                    let input = document.getElementById('domain_input');
-                    input.value = user_data.domain;
-                    console.log("User data:", user_data);
+                  //console.log("User:",user_data);
+                  //console.log("Assets:", assets);
+                  // Set admin data here, e.g. populate assets table: 
+                    //let input = document.getElementById('domain_input');
+                    //input.value = user_data.domain;
+                    //console.log("User data:", user_data);
                     // This is a regular user, fetch his/her data.
-                    $("#api_key_text").text(user_data.api_key);
+                    //$("#api_key_text").text(user_data.api_key);
                     // console.log(res);
                     // FIXME: Populate page with user info, e.g.:
-                    // FIXME: if this user is an admin, fetch the template assets + all input values.
+                    // FIXME: if this user is an admin, fetch the template assets + all input values
+                  // Store file contents in html for editor to pick up during its init:
+                  if (user_data.editor_contents) {
+                    console.log("Setting user data with editor contents:", user_data.editor_contents);
+                    $("#data-file-contents").attr("data-file-contents", user_data.editor_contents)
                   }
-                  
+                  setup_ace_editor();
               }),
               error: ((err) => {
                   console.log(err);
