@@ -1,0 +1,159 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width,initial-scale=1')
+    title Delight readers with Polite Pop - Configurator
+    link(rel='icon' href='https://fav.farm/💌')
+    link(href='/configurator/quill.snow.css' rel='stylesheet')
+    link(rel='stylesheet' type='text/css' href='/v1.2.4-beta/polite-pop.min.css?v=15')
+    link(rel='stylesheet' type='text/css' href='/configurator/dracula-prism.min.css')
+    link(rel='stylesheet' type='text/css' href='/common/common.css?v=15')
+    link(rel='stylesheet' type='text/css' href='/common/hint.css')
+    link(rel='stylesheet' type='text/css' href='/configurator/configurator.css?v=15')
+  body
+    .configurator
+      .page-heading
+        img(src='/configurator/logo.png' alt='Polite Pop\'s Configurator')
+      .page-note
+        span.page-note__heading Configure Polite Pop
+        |  Then copy the code to add it to your website!
+
+      h2.configurator__item-heading Main Pop
+      .configurator__item-container
+        .configurator__item(data-polite-pop-configurable='main-pop')
+        .configurator__item-edit-container
+          .configurator__item-editor
+            .configurator__item-editor-heading Pop text
+            .quill-editor(data-polite-pop-option='politePopHtml')
+              p Hey, I've been cooking up something cool. Want to get a peek?
+          .configurator__item-editor
+            .configurator__item-editor-heading Yes button text
+            input.configurator__item-input(type='text' value='Yeah sure!' data-polite-pop-option='politePopYesText' data-polite-pop-edit-target='.configurator .polite-pop__pop--main .polite-pop__pop-bubble-button--sure')
+          .configurator__item-editor
+            .configurator__item-editor-heading No button text
+            input.configurator__item-input(type='text' value='No thanks' data-polite-pop-option='politePopNoText' data-polite-pop-edit-target='.configurator .polite-pop__pop--main .polite-pop__pop-bubble-button--nope')
+      h2.configurator__item-heading Exit-Intent Pop
+      .configurator__item-container
+        .configurator__item(data-polite-pop-configurable='exit-intent')
+        .configurator__item-edit-container
+          .configurator__item-editor
+            .configurator__item-editor-heading Pop text
+            .quill-editor(data-polite-pop-option='exitIntentPopHtml')
+              p Want to hear about the next awesome thing I’m working on?
+          .configurator__item-editor
+            .configurator__item-editor-heading Yes button text
+            input.configurator__item-input(type='text' value='Yeah sure!' data-polite-pop-option='exitIntentPopYesText' data-polite-pop-edit-target='.configurator .polite-pop__pop--exit-intent .polite-pop__pop-bubble-button--sure')
+          .configurator__item-editor
+            .configurator__item-editor-heading No button text
+            input.configurator__item-input(type='text' value='No thanks' data-polite-pop-option='exitIntentPopNoText' data-polite-pop-edit-target='.configurator .polite-pop__pop--exit-intent .polite-pop__pop-bubble-button--nope')
+      h2.configurator__item-heading Modal
+      .configurator__item-container
+        .configurator__item(data-polite-pop-configurable='modal')
+        .configurator__item-edit-container
+          .configurator__item-editor
+            .configurator__item-editor-heading Modal text
+            .quill-editor(data-polite-pop-option='modalHtml')
+              p Go beyond social newsfeeds and explore the wild, undiscovered web.
+              p Join my weekly newsletter where you’ll see:
+              ul
+                li Evolving ideas in techno-spirituality
+                li Life-affirming art that will help you grow
+                li New ways of communicating on the web
+              p
+                | My mission is to make the web more fun
+                i !
+                |  🤪
+          .configurator__item-editor
+            .configurator__item-editor-heading Subscribe button text
+            input.configurator__item-input(type='text' value='Subscribe' data-polite-pop-option='modalSubscribeButtonText' data-polite-pop-edit-target='.configurator .polite-pop__modal .polite-pop__modal-button')
+      div(style='color: #a7ffc7; margin-bottom: 4px; font-weight: bold; text-transform: uppercase;') Important: Where to send subscribers?
+      h2.configurator__item-heading ConvertKit & Mailchimp Integration
+      .configurator__item-container
+        .configurator__item-edit-container
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | form action
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--top-right(aria-label='The URL Polite Pop calls to send new subscribers to your email list') i
+            input.configurator__item-input(type='text' placeholder='https://example.com/forms/example' data-polite-pop-option='signupFormAction')
+            a(href='/form-action-how-to/' target='_blank' style='display: inline-block; margin-top: 0.75rem; color: #98BBFF; font-weight: 500;') How do I find this?
+            |  🧐
+
+      h2.configurator__item-heading More options
+      .configurator__item-container
+        .configurator__item-edit-container
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | signup form: success message
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded(aria-label='Success message after user signs up through modal') i
+            input.configurator__item-input(type='text' value='Success! You signed up! 🎉' data-polite-pop-option='newEmailSignupSuccessMessage')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | signup form: error message
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Error message if a user can\'t sign up due to an error') i
+            input.configurator__item-input(type='text' value='Error. Signup failed.' data-polite-pop-option='newEmailSignupErrorMessage')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | main pop: scroll percentage required
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Percentage of the page user has to scroll before the Main Pop slides in') i
+            input.configurator__item-input(type='text' value='50' data-polite-pop-option='politePopScrollPercentageRequired' pattern='[0-9]|([1-9][0-9])|100' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number 1-100\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | main pop: time in seconds required
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Active time user has to be on the page before the Main Pop slides in') i
+            input.configurator__item-input(type='text' value='10' data-polite-pop-option='politePopTimeInSecondsRequired' pattern='[0-9]+' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | exit intent pop: scroll percentage required
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Percentage of the page user has to scroll before the Exit Intent Pop can be activated') i
+            input.configurator__item-input(type='text' value='0' data-polite-pop-option='exitIntentPopScrollPercentageRequired' pattern='[0-9]|([1-9][0-9])|100' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number 1-100\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | exit intent pop: time in seconds required
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Active time user has to be on the page before the Exit Intent Pop can be activated') i
+            input.configurator__item-input(type='text' value='10' data-polite-pop-option='exitIntentPopTimeInSecondsRequired' pattern='[0-9]+' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | days to wait before displaying again
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Days to wait after a user sees Polite Pop before it can be activated again') i
+            input.configurator__item-input(type='text' value='3' data-polite-pop-option='daysToWaitBeforeDisplayingAgain' pattern='[0-9]+' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | minimum screen width in pixels required
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Prevent Polite Pop from activating on screens smaller than this size (Recommended: 1000)') i
+            input.configurator__item-input(type='text' value='1000' data-polite-pop-option='minScreenWidthInPixelsRequired' pattern='[0-9]+' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | minimum scroll distance in pixels required
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='Minimum distance a user has to scroll before Polite Pop can activate') i
+            input.configurator__item-input(type='text' value='500' data-polite-pop-option='minScrollDistanceInPixelsRequired' pattern='[0-9]+' onblur='if (!this.checkValidity()) {this.reportValidity()};' oninvalid='this.setCustomValidity(\'Please enter a number\');' oninput='this.setCustomValidity(\'\');')
+          .configurator__item-editor
+            .configurator__item-editor-heading
+              | display panel with polite pop's status
+              span.icon.hint--top.hint--no-animate.hint--no-arrow.hint--rounded.hint--large(aria-label='RECOMMENDED FOR TESTING ONLY: Show progress towards scroll and timing requirements in a display panel') i
+            .select
+              select.configurator__item-input(data-polite-pop-option='loadFullStatsDisplay')
+                option(value='false') Off
+                option(value='true') On
+            a(href='/demo/' target='_blank' style='display: inline-block; margin-top: 0.75rem; color: #98BBFF; font-weight: 500;') See the display panel in action on the demo page
+      h2.configurator__item-heading Add Polite Pop to your website!
+      h4(style='color: #98BBFF;')
+        | Copy and paste this code before the closing 
+        span(style='padding: 1px 3px 2px; background-color: #233056; font-size: 15px; color: #d9e3f8; font-weight: bold; font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace; border-radius: 3px;') </body>
+        |  tag on your site! 🦔
+      pre
+        code.language-html.copy-code-source.
+          <link href="https://cdn.politepop.com/v1.2.4-beta/polite-pop.min.css" rel="stylesheet" >
+          <script src="https://cdn.politepop.com/v1.2.4-beta/polite-pop.min.js"></script>
+          <script>
+            PolitePop();
+          </script>
+          
+      button.copy-code.ocean-wave-button
+        svg(xmlns='http://www.w3.org/2000/svg' height='20' width='20' fill='none' viewBox='0 0 24 24' stroke='#ffffff' stroke-width='2')
+          path(stroke-linecap='round' stroke-linejoin='round' d='M13 7l5 5m0 0l-5 5m5-5H6')
+        | Copy code
+    script(src='/configurator/quill.min.js')
+    script(src='/configurator/prism.js')
+    script(src='/v1.2.4-beta/polite-pop.js?v=15')
+    script(src='/configurator/configurator.js?v=15')

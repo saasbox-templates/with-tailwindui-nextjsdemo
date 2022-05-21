@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delight readers with Polite Pop - Configurator</title>
+    <link rel="icon" href="https://fav.farm/💌">
+    <link href="/configurator/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/v1.2.4-beta/polite-pop.min.css?v=15">
+    <link rel="stylesheet" type="text/css" href="/configurator/dracula-prism.min.css">
+    <link rel="stylesheet" type="text/css" href="/common/common.css?v=15">
+    <link rel="stylesheet" type="text/css" href="/common/hint.css">
+    <link rel="stylesheet" type="text/css" href="/configurator/configurator.css?v=15">
+  </head>
+  <body>
+    <div class="configurator">
+      <div class="page-heading">
+        <img src="/configurator/logo.png" alt="Polite Pop's Configurator">
+      </div>
+      <div class="page-note">
+        <span class="page-note__heading">Configure Polite Pop</span> Then copy the code to add it to your website!
+      </div>
+
+      <h2 class="configurator__item-heading">Main Pop</h2>
+      <div class="configurator__item-container">
+        <div class="configurator__item" data-polite-pop-configurable="main-pop"></div>
+        <div class="configurator__item-edit-container">
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">Pop text</div>
+            <div class="quill-editor" data-polite-pop-option="politePopHtml">
+              <p>Hey, I've been cooking up something cool. Want to get a peek?</p>
+            </div>
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">Yes button text</div>
+            <input class="configurator__item-input" type="text" value="Yeah sure!" data-polite-pop-option="politePopYesText" data-polite-pop-edit-target=".configurator .polite-pop__pop--main .polite-pop__pop-bubble-button--sure">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">No button text</div>
+            <input class="configurator__item-input" type="text" value="No thanks" data-polite-pop-option="politePopNoText" data-polite-pop-edit-target=".configurator .polite-pop__pop--main .polite-pop__pop-bubble-button--nope">
+          </div>
+        </div>
+      </div>
+
+      <h2 class="configurator__item-heading">Exit-Intent Pop</h2>
+      <div class="configurator__item-container">
+        <div class="configurator__item" data-polite-pop-configurable="exit-intent"></div>
+        <div class="configurator__item-edit-container">
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">Pop text</div>
+            <div class="quill-editor" data-polite-pop-option="exitIntentPopHtml">
+              <p>Want to hear about the next awesome thing I’m working on?</p>
+            </div>
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">Yes button text</div>
+            <input class="configurator__item-input" type="text" value="Yeah sure!" data-polite-pop-option="exitIntentPopYesText" data-polite-pop-edit-target=".configurator .polite-pop__pop--exit-intent .polite-pop__pop-bubble-button--sure">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">No button text</div>
+            <input class="configurator__item-input" type="text" value="No thanks" data-polite-pop-option="exitIntentPopNoText" data-polite-pop-edit-target=".configurator .polite-pop__pop--exit-intent .polite-pop__pop-bubble-button--nope">
+          </div>
+        </div>
+      </div>
+
+      <h2 class="configurator__item-heading">Modal</h2>
+      <div class="configurator__item-container">
+        <div class="configurator__item" data-polite-pop-configurable="modal"></div>
+        <div class="configurator__item-edit-container">
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">Modal text</div>
+            <div class="quill-editor" data-polite-pop-option="modalHtml">
+              <p>Go beyond social newsfeeds and explore the wild, undiscovered web.</p><p>Join my weekly newsletter where you’ll see:</p><ul><li>Evolving ideas in techno-spirituality</li><li>Life-affirming art that will help you grow</li><li>New ways of communicating on the web</li></ul><p>My mission is to make the web more fun<i>!</i> 🤪</p>
+            </div>
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">Subscribe button text</div>
+            <input class="configurator__item-input" type="text" value="Subscribe" data-polite-pop-option="modalSubscribeButtonText" data-polite-pop-edit-target=".configurator .polite-pop__modal .polite-pop__modal-button">
+          </div>
+        </div>
+      </div>
+
+      <div style="color: #a7ffc7; margin-bottom: 4px; font-weight: bold; text-transform: uppercase;">Important: Where to send subscribers?</div>
+      <h2 class="configurator__item-heading">ConvertKit &amp; Mailchimp Integration</h2>
+      <div class="configurator__item-container">
+        <div class="configurator__item-edit-container">
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">form action<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--top-right" aria-label="The URL Polite Pop calls to send new subscribers to your email list">i</span></div>
+            <input class="configurator__item-input" type="text" placeholder="https://example.com/forms/example" data-polite-pop-option="signupFormAction">
+            <a href="/form-action-how-to/" target="_blank" style="display: inline-block; margin-top: 0.75rem; color: #98BBFF; font-weight: 500;">How do I find this?</a> 🧐
+          </div>
+        </div>
+      </div>
+
+      <h2 class="configurator__item-heading">More options</h2>
+      <div class="configurator__item-container">
+        <div class="configurator__item-edit-container">
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">signup form: success message<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded" aria-label="Success message after user signs up through modal">i</span></div>
+            <input class="configurator__item-input" type="text" value="Success! You signed up! 🎉" data-polite-pop-option="newEmailSignupSuccessMessage">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">signup form: error message<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Error message if a user can't sign up due to an error">i</span></div>
+            <input class="configurator__item-input" type="text" value="Error. Signup failed." data-polite-pop-option="newEmailSignupErrorMessage">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">main pop: scroll percentage required<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Percentage of the page user has to scroll before the Main Pop slides in">i</span></div>
+            <input class="configurator__item-input" type="text" value="50" data-polite-pop-option="politePopScrollPercentageRequired" pattern="[0-9]|([1-9][0-9])|100" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number 1-100');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">main pop: time in seconds required<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Active time user has to be on the page before the Main Pop slides in">i</span></div>
+            <input class="configurator__item-input" type="text" value="10" data-polite-pop-option="politePopTimeInSecondsRequired" pattern="[0-9]+" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">exit intent pop: scroll percentage required<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Percentage of the page user has to scroll before the Exit Intent Pop can be activated">i</span></div>
+            <input class="configurator__item-input" type="text" value="0" data-polite-pop-option="exitIntentPopScrollPercentageRequired" pattern="[0-9]|([1-9][0-9])|100" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number 1-100');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">exit intent pop: time in seconds required<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Active time user has to be on the page before the Exit Intent Pop can be activated">i</span></div>
+            <input class="configurator__item-input" type="text" value="10" data-polite-pop-option="exitIntentPopTimeInSecondsRequired" pattern="[0-9]+" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">days to wait before displaying again<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Days to wait after a user sees Polite Pop before it can be activated again">i</span></div>
+            <input class="configurator__item-input" type="text" value="3" data-polite-pop-option="daysToWaitBeforeDisplayingAgain" pattern="[0-9]+" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">minimum screen width in pixels required<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Prevent Polite Pop from activating on screens smaller than this size (Recommended: 1000)">i</span></div>
+            <input class="configurator__item-input" type="text" value="1000" data-polite-pop-option="minScreenWidthInPixelsRequired" pattern="[0-9]+" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">minimum scroll distance in pixels required<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="Minimum distance a user has to scroll before Polite Pop can activate">i</span></div>
+            <input class="configurator__item-input" type="text" value="500" data-polite-pop-option="minScrollDistanceInPixelsRequired" pattern="[0-9]+" onblur="if (!this.checkValidity()) {this.reportValidity()};" oninvalid="this.setCustomValidity('Please enter a number');" oninput="this.setCustomValidity('');">
+          </div>
+          <div class="configurator__item-editor">
+            <div class="configurator__item-editor-heading">display panel with polite pop's status<span class="icon hint--top hint--no-animate hint--no-arrow hint--rounded hint--large" aria-label="RECOMMENDED FOR TESTING ONLY: Show progress towards scroll and timing requirements in a display panel">i</span></div>
+            <div class="select">
+              <select class="configurator__item-input" data-polite-pop-option="loadFullStatsDisplay">
+                <option value="false">Off</option>
+                <option value="true">On</option>
+              </select>
+            </div>
+            <a href="/demo/" target="_blank" style="display: inline-block; margin-top: 0.75rem; color: #98BBFF; font-weight: 500;">See the display panel in action on the demo page</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="configurator__item-heading">Add Polite Pop to your website!</h2>
+      <h4 style="color: #98BBFF;">Copy and paste this code before the closing <span style="padding: 1px 3px 2px; background-color: #233056; font-size: 15px; color: #d9e3f8; font-weight: bold; font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace; border-radius: 3px;">&lt;/body&gt;</span> tag on your site! 🦔</h4>
+<pre><code class="language-html copy-code-source">&lt;link href="https://cdn.politepop.com/v1.2.4-beta/polite-pop.min.css" rel="stylesheet" &gt;
+&lt;script src="https://cdn.politepop.com/v1.2.4-beta/polite-pop.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  PolitePop();
+&lt;/script&gt;
+</code></pre>
+    <button class="copy-code ocean-wave-button"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="#ffffff" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>Copy code</button>
+    </div>
+    <script src="/configurator/quill.min.js"></script>
+    <script src="/configurator/prism.js"></script>
+    <script src="/v1.2.4-beta/polite-pop.js?v=15"></script>
+    <script src="/configurator/configurator.js?v=15"></script>
+  </body>
+</html>

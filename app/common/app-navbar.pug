@@ -8,9 +8,9 @@ mixin app-navbar()
             img.hidden.lg_block.h-8.w-auto(src=thisApp.ImageUrl, alt='Logo')
           .hidden.sm_-my-px.sm_ml-6.sm_flex.sm_space-x-8
             //  Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
-            a.border-indigo-500.text-gray-900.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='/app/start' aria-current='page') Dashboard
+            a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium(href='/app/start' aria-current='page') Admin
             if (currentUser.appUser.is_admin == true)
-              a.border-indigo-500.text-gray-900.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='/app/user' aria-current='page') User View
+              a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium(href='/app/user-v2' aria-current='page') Popup Configurator
             a.border-transparent.text-gray-500.hover_border-gray-300.hover_text-gray-700.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='/app/test') Test Popup
         .hidden.sm_ml-6.sm_flex.sm_items-center
           //-button.bg-white.p-1.rounded-full.text-gray-400.hover_text-gray-500.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button')
@@ -30,7 +30,7 @@ mixin app-navbar()
                 a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
                 if currentUser.appUser.is_admin
                   a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
-                  button.block.px-4.w-full.text-left.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(onclick=`goto_app(${thisApp.app_external_domain_enabled}, '${thisApp.app_external_domain}')`, role='menuitem') App Dashboard
+                  a(href="/app/start").block.px-4.w-full.text-left.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(role='menuitem') App Dashboard
                 a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/logout', role='menuitem') Sign out
           //-
             Mobile menu, show/hide based on menu open state.
