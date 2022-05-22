@@ -13,15 +13,19 @@ html(lang='en')
     link(rel='stylesheet' type='text/css', href=asset('./popup-configurator_files/hint.css'))
     link(rel='stylesheet' type='text/css', href=asset('./popup-configurator_files/configurator.css'))
     style.
-      ul {
+      /* Centered section inside the top navigation */
+      .topnav-centered {
+        text-align: center
+      }
+      .topnav-centered ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
+        display: inline-block;
         background-color: #1D2741;
       }
-
-      li {
+      .topnav-centered li {
         float: left;
       }
 
@@ -41,19 +45,20 @@ html(lang='en')
         background-color: #00C411;
       }
   body(cz-shortcut-listen='true')
-    ul
-      li
-        a(href="/app/admin")
-          | Admin
-      li
-        a(href="/app/user-v2").active
-          | Popup Configurator
-      li
-        a(href="/user/account")
-          | Account
-      li
-        a(href="/user/profile")
-          | Profile
+    .topnav-centered
+      ul
+        li
+          a(href="/app/admin")
+            | Admin
+        li
+          a(href="/app/user-v2").active
+            | Popup Configurator
+        li
+          a(href="/user/account")
+            | Account
+        li
+          a(href="/user/profile")
+            | Profile
     div(hidden, id="token", data-token=token)
     div(hidden, id="profile", data-profile="user") // Determines the user profile.
     .configurator
