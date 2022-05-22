@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  background-color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  position: static;
+  margin: 0 auto;
+  max-width: 720px;
+  height: auto;
+  padding: 6.5rem 3rem;
+  line-height: 1.44;
+  font-size: 22px;
+  font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.75);
+}
+
+.container h1, .container h2, .container h3 {
+  margin-top: 1.5em;
+  margin-bottom: .75em;
+}
+
+.container h1 {
+  margin-bottom: .5em;
+  line-height: 1.2;
+  font-size: 3.5rem;
+}
+
+.container h3 {
+  color: #FF80AB;
+}
+
+.container p {
+  margin-bottom: 1.1em;
+}
+
+.container ul, .container ol {
+  margin-left: 34px;
+  margin-bottom: 1.1em;
+}
+
+.container ul ul, .container ol ol {
+  margin-top: .75em;
+  margin-bottom: .75em;
+}
+
+.container ol {
+  margin-left: 36px;
+}
+
+.container li {
+  margin-bottom: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

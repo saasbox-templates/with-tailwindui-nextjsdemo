@@ -1,0 +1,227 @@
+.circular-progress, .circular-progress * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.circular-progress {
+  position: fixed;
+  z-index: 999998;
+  top: 1rem;
+  left: 1rem;
+  max-width: 284px;
+  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.circular-progress .circular-progress__main-container {
+  margin-bottom: .75rem;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,.14);
+  background-color: #121B2D;
+  border-radius: 16px;
+  box-shadow:
+    0px 0px 2.7px rgba(0, 0, 0, 0.022),
+    0px 0px 6.9px rgba(0, 0, 0, 0.031),
+    0px 0px 14.2px rgba(0, 0, 0, 0.039),
+    0px 0px 29.2px rgba(0, 0, 0, 0.048),
+    0px 0px 80px rgba(0, 0, 0, 0.07);
+}
+
+.circular-progress .circular-progress__heading {
+  margin-bottom: .75rem;
+  padding: .75rem 1.35rem .5rem;
+  font-size: 19px;
+  border: 1px solid rgba(255,255,255,.14);
+  color: #fff;
+  background-color: #121B2D;
+  border-radius: 16px;
+  box-shadow:
+    0px 0px 2.7px rgba(0, 0, 0, 0.022),
+    0px 0px 6.9px rgba(0, 0, 0, 0.031),
+    0px 0px 14.2px rgba(0, 0, 0, 0.039),
+    0px 0px 29.2px rgba(0, 0, 0, 0.048),
+    0px 0px 80px rgba(0, 0, 0, 0.07);
+}
+
+.circular-progress .circular-progress__heading img {
+  max-width: 100%;
+}
+
+.circular-progress .circular-progress__note {
+  font-weight: bold;
+}
+
+.circular-progress .circular-progress__note-heading {
+  margin-bottom: .25em;
+  font-size: 21px;
+  color: #fff;
+  font-style: italic;
+  color: #fff;
+}
+
+.circular-progress .circular-progress__note-text {
+  margin-bottom: 1em;
+  font-size: 18px;
+  color: #A4BFF4;
+}
+
+.circular-progress .circular-progress__circles-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.circular-progress .circular-progress__circle-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circular-progress .circular-progress__circle {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: .5rem;
+}
+
+.circular-progress .circular-progress__circle--timing {
+  
+}
+
+.circular-progress .circular-progress__circle--complete .circular-progress__progress-border {
+  stroke: #C5D8FA;
+}
+
+.circular-progress .circular-progress__text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110px;
+  height: 117px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  font-weight: 600;
+  color: #27272A;
+}
+
+.circular-progress .circular-progress__text {
+  position: relative;
+  top: -3px;
+  right: -2px;
+  color: #fff;
+}
+
+.circular-progress .circular-progress__text-inner {
+  
+}
+
+.circular-progress .circular-progress__text-percent {
+  font-size: 17px;
+}
+
+.circular-progress .circular-progress__label-container {
+  text-align: center;
+}
+
+.circular-progress .circular-progress__label {
+  margin-bottom: 3px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #F0F4FF;
+}
+
+.circular-progress .circular-progress__label-note {
+  color: #A4BFF4;
+  font-size: 17px;
+}
+
+.circular-progress .circular-progress__pop-description-note,
+.circular-progress .circular-progress__pop-min-distance-scroll-note,
+.circular-progress .circular-progress__pop-exit-description-note,
+.circular-progress .circular-progress__exit-intent-note,
+.circular-progress .circular-progress__pop-disabled-note,
+.circular-progress .circular-progress__pop-popped-note,
+.circular-progress .circular-progress__no-mobile-support-note {
+  display: none;
+  margin-bottom: .75rem;
+  padding: .75rem 1rem .92rem;
+  font-size: 19px;
+  border: 1px solid rgba(255,255,255,.14);
+  color: #fff;
+  background-color: #121B2D;
+  border-radius: 16px;
+  box-shadow:
+    0px 0px 2.7px rgba(0, 0, 0, 0.022),
+    0px 0px 6.9px rgba(0, 0, 0, 0.031),
+    0px 0px 14.2px rgba(0, 0, 0, 0.039),
+    0px 0px 29.2px rgba(0, 0, 0, 0.048),
+    0px 0px 80px rgba(0, 0, 0, 0.07);
+}
+
+.circular-progress .circular-progress__pop-description-note,
+.circular-progress .circular-progress__pop-exit-description-note {
+  display: block;
+}
+
+.circular-progress .circular-progress__pop-description-note-heading,
+.circular-progress .circular-progress__pop-min-distance-scroll-note-heading,
+.circular-progress .circular-progress__pop-exit-description-note-heading,
+.circular-progress .circular-progress__exit-intent-note-heading,
+.circular-progress .circular-progress__pop-disabled-note-heading,
+.circular-progress .circular-progress__pop-popped-note-heading,
+.circular-progress .circular-progress__no-mobile-support-note-heading {
+  position: relative;
+  top: -1px;
+  font-weight: bold; 
+  font-size: 15px; 
+  color: #ff4ecf; /* purplish pink */
+}
+
+.circular-progress .circular-progress__pop-disabled-note-heading,
+.circular-progress .circular-progress__pop-popped-note-heading {
+  color: #7CED41; /* green */
+}
+
+.circular-progress .circular-progress__exit-intent-note-heading {
+  color: #fcd34d; /* yellow */
+}
+
+.circular-progress .circular-progress__mini-text {
+  padding: 1px 3px 2px;
+  background-color: #314670; 
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.polite-pop .polite-pop__modal-form-submission-note {
+  background-color: #fcd34d;
+  color: #552409;
+  text-shadow: none;
+  margin-top: 18px;
+  border-radius: 12px;
+  padding: 6px 8px;
+  font-size: 17px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
