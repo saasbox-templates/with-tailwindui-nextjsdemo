@@ -6,11 +6,62 @@ html(lang='en')
     meta(name='viewport' content='width=device-width,initial-scale=1')
     title Demo - Delight readers with Polite Pop
     link(rel='icon' href='https://fav.farm/%F0%9F%92%8C')
-    link(rel='stylesheet' type='text/css' href='./Demo - Delight readers with Polite Pop_files/polite-pop.min.css')
-    link(rel='stylesheet' type='text/css' href='./Demo - Delight readers with Polite Pop_files/demo.css')
-    link(rel='stylesheet' href='./Demo - Delight readers with Polite Pop_files/circular-progress.css')
+    link(rel='stylesheet' type='text/css' href='./popup_demo_files/polite-pop.min.css')
+    link(rel='stylesheet' type='text/css' href='./popup_demo_files/demo.css')
+    link(rel='stylesheet' href='./popup_demo_files/circular-progress.css')
   body(cz-shortcut-listen='true')
+    style.
+      /* Centered section inside the top navigation */
+      .topnav-centered {
+        text-align: center
+      }
+      .topnav-centered ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: inline-block;
+        background-color: #1D2741;
+      }
+      .topnav-centered li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        background-color: #1D2741;
+      }
+
+      .active {
+        background-color: #00C411;
+      }
     .container
+      .topnav-centered
+        ul
+          li
+            a(href="/app/admin")
+              | Admin
+          li
+            a(href="/app/user-v2")
+              | Popup Configurator
+          li
+            a(href="/app/demo").active
+              | Popup Demo
+          li
+            a(href="/user/account")
+              | Account
+          li
+            a(href="/user/profile")
+              | Profile
+    div(hidden, id="token", data-token=token)
+    div(hidden, id="profile", data-profile="user") // Determines the user profile.
       h2(style='margin-bottom: 3px; color: #98BBFF;')
         i Polite Pop Demo!
       h1(style='margin-top: 0;') Marketing a Product with $0 Budget
@@ -163,7 +214,7 @@ html(lang='en')
       p When you come home from a run and you’re happy just to be alive, that’s the time to publish. When you can remain unaffected by the world’sworlds reaction to something you put your heart into.
       p Only then can you stay focused on the big picture — the overall journey — and continue on even if everything doesn’t go exactly as planned.
       p Something that can help a lot with this is to have a group of people (or at least one person) who you can show your writing to ahead of publishing it. This will slow you down and give you much needed perspective — a small, slow space to be vulnerable before you expose your inner world to the wider world.
-    script(src='./Demo - Delight readers with Polite Pop_files/polite-pop.js')
+    script(src=asset('./popup_demo_files/polite-pop.js'))
     style.crostini-styles.
       
       .crostini, .crostini * {
@@ -211,11 +262,11 @@ html(lang='en')
         animation: crostiniSimpleFadein 1s, crostiniSimpleFadeout 1.5s 5.5s;
       }
       
-      .crostini .crostini__close-icon:hover {
+      .crostini .crostini__close-icon_hover {
         background-color: rgba(255,255,255,.15);
       }
       
-      .crostini .crostini__close-icon:before {
+      .crostini .crostini__close-icon_before {
         position: absolute;
         content: '';
         top: 50%;
@@ -227,7 +278,7 @@ html(lang='en')
         background-color: rgba(255,255,255,.85);
       }
       
-      .crostini .crostini__close-icon:after {
+      .crostini .crostini__close-icon_after {
         position: absolute;
         content: '';
         top: 50%;
@@ -239,7 +290,7 @@ html(lang='en')
         background-color: rgba(255,255,255,.85);
       }
       
-      .crostini .crostini__close-icon:hover:before, .crostini .crostini__close-icon:hover:after {
+      .crostini .crostini__close-icon_hover_before, .crostini .crostini__close-icon_hover_after {
         background-color: #fff;
       }
       
@@ -269,7 +320,7 @@ html(lang='en')
         background-color: #c41f33;
       }
       
-      .crostini.crostini--error .crostini__close-icon:hover:before, .crostini.crostini--error .crostini__close-icon:hover:after {
+      .crostini.crostini--error .crostini__close-icon_hover_before, .crostini.crostini--error .crostini__close-icon_hover_after {
         opacity: 1;
       }
       
@@ -333,10 +384,10 @@ html(lang='en')
               modalHtml: `<h2>Go <em>beyond</em> social newsfeeds and explore the wild, undiscovered web.</h2><p>Join my weekly newsletter where you’ll see:</p><ul><li>Evolving ideas in techno-spirituality</li><li>Life-affirming art that will help you grow</li><li>New ways of communicating on the web</li></ul><p>My mission is to make the web more fun<em>!</em> 🤪</p>`
             });
       
-    script(src='./Demo - Delight readers with Polite Pop_files/demo.js')
+    script(src=asset('./popup_demo_files/demo.js'))
     .circular-progress.polite-pop
       .circular-progress__heading
-        img(src='./Demo - Delight readers with Polite Pop_files/demo-logo.png')
+        img(src=asset('./popup_demo_files/demo-logo.png'))
       .circular-progress__main-container(style='display: none;')
         .circular-progress__note
           .circular-progress__note-heading Start scrolling!
