@@ -6,9 +6,9 @@ html(lang='en')
     meta(name='viewport' content='width=device-width,initial-scale=1')
     title Demo - Delight readers with Polite Pop
     link(rel='icon' href='https://fav.farm/%F0%9F%92%8C')
-    link(rel='stylesheet' type='text/css' href=assest('./popup_demo_files/polite-pop.min.css'))
-    link(rel='stylesheet' type='text/css' href=asset('./popup_demo_files/demo.css'))
-    link(rel='stylesheet' href=asset('./popup_demo_files/circular-progress.css'))
+    link(rel='stylesheet', type='text/css', href=asset('./popup_demo_files/polite-pop.min.css'))
+    link(rel='stylesheet', type='text/css', href=asset('./popup_demo_files/demo.css'))
+    link(rel='stylesheet', type='text/css', href=asset('./popup_demo_files/circular-progress.css'))
   body(cz-shortcut-listen='true')
     style.
       /* Centered section inside the top navigation */
@@ -19,6 +19,7 @@ html(lang='en')
         list-style-type: none;
         margin: 0;
         padding: 0;
+        font-size: 0.8em;
         overflow: hidden;
         display: inline-block;
         background-color: #1D2741;
@@ -60,8 +61,8 @@ html(lang='en')
           li
             a(href="/user/profile")
               | Profile
-    div(hidden, id="token", data-token=token)
-    div(hidden, id="profile", data-profile="user") // Determines the user profile.
+      div(hidden, id="token", data-token=token)
+      div(hidden, id="profile", data-profile="user") // Determines the user profile.
       h2(style='margin-bottom: 3px; color: #98BBFF;')
         i Polite Pop Demo!
       h1(style='margin-top: 0;') Marketing a Product with $0 Budget
@@ -372,7 +373,6 @@ html(lang='en')
       }
       
     script.
-      
       PolitePop({
               loadFullStatsDisplay: true,
               fullStatsAssetsUseLocalUrls: true,
@@ -469,9 +469,7 @@ html(lang='en')
         button.ocean-wave-button.ocean-wave-button--restart-demo
           svg(xmlns='http://www.w3.org/2000/svg' height='20' width='20' fill='none' viewBox='0 0 24 24' stroke='#ffffff' stroke-width='2')
             path(stroke-linecap='round' stroke-linejoin='round' d='M13 7l5 5m0 0l-5 5m5-5H6')
-          | 
-RESTART DEMO
-
+          | RESTART DEMO
       .circular-progress__no-mobile-support-note
         span.circular-progress__no-mobile-support-note-heading NO POPS ON MOBILE
         |  Polite Pop doesn't activate on mobile because of the limited space.
