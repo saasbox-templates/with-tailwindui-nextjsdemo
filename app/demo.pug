@@ -19,7 +19,6 @@ html(lang='en')
         list-style-type: none;
         margin: 0;
         padding: 0;
-        font-size: 0.8em;
         overflow: hidden;
         display: inline-block;
         background-color: #1D2741;
@@ -43,24 +42,25 @@ html(lang='en')
       .active {
         background-color: #00C411;
       }
-    .container
-      .topnav-centered
-        ul
+    .topnav-centered
+      ul
+        if currenUser.appUser.is_admin == true
           li
             a(href="/app/admin")
               | Admin
-          li
-            a(href="/app/user-v2")
-              | Popup Configurator
-          li
-            a(href="/app/demo").active
-              | Popup Demo
-          li
-            a(href="/user/account")
-              | Account
-          li
-            a(href="/user/profile")
-              | Profile
+        li
+          a(href="/app/user-v2")
+            | Popup Configurator
+        li
+          a(href="/app/demo").active
+            | Popup Demo
+        li
+          a(href="/user/account")
+            | Account
+        li
+          a(href="/user/profile")
+            | Profile
+    .container
       div(hidden, id="token", data-token=token)
       div(hidden, id="profile", data-profile="user") // Determines the user profile.
       h2(style='margin-bottom: 3px; color: #98BBFF;')
