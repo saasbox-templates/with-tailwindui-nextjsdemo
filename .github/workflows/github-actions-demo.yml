@@ -12,7 +12,7 @@ jobs:
         env: 
           SAASBOX_APIKEY: ${{ secrets.SAASBOX_APIKEY}}
           SAASBOX_APPID: ${{ secrets.SAASBOX_APPID }}
-    - run: npm ciß
+    - run: npm ci
     - run: npm test
     # run npm test, build, lint, etc.
     - name: Install saasbox cli
