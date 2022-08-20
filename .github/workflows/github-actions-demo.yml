@@ -17,7 +17,7 @@ jobs:
       env: 
         SAASBOX_APIKEY: ${{ secrets.SAASBOX_APIKEY}}
         SAASBOX_APPID: ${{ secrets.SAASBOX_APPID }}
-      #run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
-      run: echo "Hello world"
+      run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
+      #run: echo "Hello world"
     #- name: Run sbox cli:
     #  run: saasbox-cli -a -d .
