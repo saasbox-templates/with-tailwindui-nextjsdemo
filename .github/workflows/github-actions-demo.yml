@@ -18,6 +18,7 @@ jobs:
     - name: Install saasbox cli
       run: npm install -g saasbox-cli
     - name: Create auth file with secrets
-      run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
+      #run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
+      run: echo "Hello world" > ~/sbox.config.json
     - name: Run sbox cli:
       run: sbox-cli -a -d .
