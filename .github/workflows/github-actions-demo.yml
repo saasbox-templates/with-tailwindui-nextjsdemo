@@ -9,14 +9,16 @@ jobs:
       with:
         node-version: 14
         cache: 'npm'
-        SAASBOX_APIKEY: ${{ secrets.SAASBOX_APIKEY}}
-        SAASBOX_APPID: ${{ secrets.SAASBOX_APPID }}
     - run: npm ciß
     - run: npm test
     # run npm test, build, lint, etc.
     - name: Install saasbox cli
       run: npm install -g saasbox-cli
     - name: Create auth file with secrets
-      run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
+      - shell: bash
+        env: 
+          SAASBOX_APIKEY: ${{ secrets.SAASBOX_APIKEY}}
+          SAASBOX_APPID: ${{ secrets.SAASBOX_APPID }}
+        run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
     - name: Run sbox cli:
       run: sbox-cli -a -d .
