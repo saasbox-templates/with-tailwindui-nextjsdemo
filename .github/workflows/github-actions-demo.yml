@@ -21,4 +21,4 @@ jobs:
       #run: echo "{\"apikey\": \"$SAASBOX_APIKEY\", \"appid\": \"$SAASBOX_APPID\" }" > ~/sbox.config.json
       run: echo "Hello world" > ~/sbox.config.json
     - name: Run sbox cli:
-      run: sbox-cli -a -d .
+      run: saasbox-cli -a -d .
