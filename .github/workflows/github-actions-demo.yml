@@ -20,6 +20,7 @@ jobs:
       shell: bash
       #run: echo "{\"apikey\": \"" $SAASBOX_APIKEY "\", \"appid\":\"" $SAASBOX_APPID "\" }" > ~/sbox.config.json
       run: |
+        echo "Hello world!"
         echo "{\"apikey\": \""$SAASBOX_APIKEY"\", \"appid\":\""$SAASBOX_APPID"\" }" > ~/sbox.config.json
         cat ~/sbox.config.json
     #- name: Run sbox cli:
