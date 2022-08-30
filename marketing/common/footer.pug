@@ -5,7 +5,7 @@ mixin footer()
     .max-w-screen-xl.mx-auto.py-12.px-4.sm_px-6.lg_py-16.lg_px-8
       .xl_grid.xl_grid-cols-3.xl_gap-8
         .space-y-8.xl_col-span-1
-          img.h-10(src=thisApp.ImageUrl, alt=thisApp.name)
+          img.h-10.rounded-full(src=thisApp.ImageUrl, alt=thisApp.name)
           p.text-gray-500.text-base.leading-6.
             #{thisApp.about}
           .flex.space-x-

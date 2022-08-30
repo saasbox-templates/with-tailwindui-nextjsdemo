@@ -11,7 +11,7 @@ mixin landing-navbar()
       .flex.items-center.flex-1
         .flex.items-center.justify-between.w-full.md_w-auto
           a(href='#', aria-label='Home')
-            img.h-8.w-auto.sm_h-10(src=thisApp.ImageUrl, alt='Logo')
+            img.h-8.w-auto.sm_h-10.rounded-full(src=thisApp.ImageUrl, alt='Logo')
           .-mr-2.flex.items-center.md_hidden
             button.inline-flex.items-center.justify-center.p-2.rounded-md.text-gray-400.hover_text-gray-500.hover_bg-gray-100.focus_outline-none.focus_bg-gray-100.focus_text-gray-500.transition.duration-150.ease-in-out#main-menu(type='button', aria-label='Main menu', aria-haspopup='true')
               svg.h-6.w-6(stroke='currentColor', fill='none', viewBox='0 0 24 24')
