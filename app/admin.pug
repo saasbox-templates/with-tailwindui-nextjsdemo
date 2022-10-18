@@ -14,7 +14,7 @@ html
     .min-h-full
       include common/app-navbar.pug
       +app-navbar()
-      .py-10
+      div
         header
           //-.max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
             h2.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, StackBoost Admin
@@ -26,9 +26,9 @@ html
             .bg-white.px-2.py-1.sm_px-6.lg_px-8.border.rounded-md.border-indigo-300
               include common/tab-pills.pug
               +tab_pills()
-          .max-w-full.mx-auto.px-2.sm_px-6.md_px-8.bg_superblocks.h-full
+          .max-w-full.mx-auto
             //  Replace with your content 
-            iframe(src="https://app.superblocks.com/applications/5f366867-139f-4788-aaa8-10cd010d6ed4/pages/a9ac6965-7643-4bd3-a821-d2f8be701240?otc=" + otc, width="100%", height="100%").h-full
+            iframe(src="https://app.superblocks.com/applications/5f366867-139f-4788-aaa8-10cd010d6ed4/pages/a9ac6965-7643-4bd3-a821-d2f8be701240?otc=" + otc, width="100%", height="100%")
     include ./common/app-footer.pug
     +footer()
     script(src=asset('javascripts/display-orgs.js'))
