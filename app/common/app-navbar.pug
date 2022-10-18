@@ -8,7 +8,10 @@ mixin app-navbar()
             img.hidden.lg_block.h-8.w-auto(src=thisApp.ImageUrl, alt='Logo')
           .hidden.sm_-my-px.sm_ml-6.sm_flex.sm_space-x-8
             //  Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
-            a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium(href='/app/start' aria-current='page') Admin
+            if currentUser.appUser.is_admin
+              a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium.border-indigo-500.border-b-2(href='/app/start' aria-current='page') Admin
+            else
+              a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium.border-indigo-500.border-b-2(href='/app/start' aria-current='page') User
         .hidden.sm_ml-6.sm_flex.sm_items-center
           //-button.bg-white.p-1.rounded-full.text-gray-400.hover_text-gray-500.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button')
             span.sr-only View notifications
