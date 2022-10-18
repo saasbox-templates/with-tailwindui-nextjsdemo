@@ -1,0 +1,143 @@
+//  This example requires Tailwind CSS v2.0+ 
+//
+  
+    This example requires updating your template:
+  
+    ```
+    <html class="h-full">
+    <body class="h-full">
+    ```
+html
+  include common/app-head.pug
+  +head("Welcome to Sila")  
+  body
+    .min-h-full
+      include common/app-navbar.pug
+      +app-navbar()
+      .py-10
+        header
+          .max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
+            h1.text-3xl.font-bold.leading-tight.text-gray-900 Previewing user dashboards as admin
+        main
+          //- JWT that identifies this user:
+          div(hidden, id="token", data-token=token)
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8.mt-8
+            .bg-white.px-4.py-6.sm_px-6.lg_px-8.border.rounded-md.border-indigo-300
+              include common/tab-pills.pug
+              +tab_pills()
+            .mt-5.grid.grid-cols-6.gap-4
+              div.col-span-4
+                //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
+                h4(id="preview-dashboard-for").text-gray-800.font-bold Dashboard
+              //-div.col-span-2
+                include common/select-menu.pug
+                +select_menu()
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+            //  Replace with your content 
+            .py-4
+              .flex.flex-col
+                div(id="cluvio-embed-here").-my-2.py-2.overflow-x-auto.sm_-mx-6.sm_px-6.lg_-mx-8.lg_px-8
+                //-
+                //-
+                //- Table is added here by javascript when there are organizations
+                //-
+                //-
+          .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
+            div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
+              div(id="status").col-span-6
+    include ./common/app-footer.pug
+    +footer()
+    script(src=asset('javascripts/display-orgs.js'))
+    script.
+      $(document).ready (function(){
+        let jwt = $("#token").attr("data-token");
+
+        // Create new user or fetch existing user to populate their data.
+        //console.log("Making ajax call with jwt:", jwt)
+        $.ajax({
+              url: "https://thinner.onrender.com/daco-create-get-user",
+              headers: { Authorization: "Bearer " + jwt },
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              data: JSON.stringify({ }),
+              type: 'POST',
+              success: ((res) => {
+                  let user_data = res.user_data;
+                  let orgs = null;
+                  let org = null;
+                  let orgId = null;
+                  let embed_url = null;
+                  let dashboard = null;
+                  let dashname = null;
+                  console.log("User:",user_data);
+                  
+                  // Set admin data here, e.g. populate assets table:
+                  if (user_data.is_admin == true) {
+                    // Get the org id that we are previewing from the url:
+                    let loc = window.location.href
+                    let path = loc.split('?')[0]; // First remove querystring.
+                    console.log("loc:",loc)
+
+                    let orgId = path.substring(path.lastIndexOf('/') + 1);
+                    let embed_url = null;
+                    orgs = res.orgs;
+                    console.log("Orgs:", orgs);
+                    // Show list of organizations
+                    for (let i = 0; i < orgs.length; i++) {
+                      if (orgs[i].id == orgId) {
+                        console.log("Found org to preview", orgs[i]);
+                        org = orgs[i];
+                        break;
+                      }
+                    }
+                    orgId = org.id;
+
+                    if (!org.dashboards || org.dashboards.length == 0) {
+                      // Empty, show nothing.
+                      $("#preview-dashboard-for").text("No dashboards. Nothing to show for this organization.")
+                    } else {
+                      // Get the query string for the chosen dashboard
+                      dashname = getQueryString()["dashboard"];
+                      if (!dashname) {
+                        dashname = org.dashboards[0].name;
+                        dashboard = org.dashboards[0];
+                      } else {
+                        for (let i = 0; i < org.dashboards.length; i++) {
+                          if (org.dashboards[i].name == dashname) {
+                              dashboard = org.dashboards[i];
+                              break;
+                          }
+                        }
+                      }
+                      return refreshUrl(org.id, dashboard.name).then(url => {
+                        dashboard.url = url;
+                        // At this point both dashname, url and dashboard are set. Display everything:
+                        embed_url = dashboard.url;
+                        $("#preview-dashboard-for").text("Preview dashboard " + dashname + " for " + org.domain);
+                        console.log("Embedding url:", embed_url);
+                        addCluvioEmbed(orgId, embed_url);
+                        addUserDashboardNavigation(org, dashname, true);
+                      })
+                    }
+                  }
+              }),
+              error: ((err) => {
+                  console.log(err);
+              })
+        });
+      });
+      $(window).on('message', (event) => {
+        const drillData = JSON.parse(event.originalEvent.data)
+        console.log("Event caught on window\n");
+        if (drillData.event === 'drillDown') {
+          console.log("It is a drillDown event. Data:\n", drillData);
+          return drillThroughUrl(drillData.params.dashboardId, drillData.params.filters).then(result => {
+            console.log("Successful drillthrough call, with url:", result.url);
+            // Now replace the embed with the new url:
+            let orgId = $("#cluvio-embed").attr("data-orgid");
+            addCluvioEmbed(orgId, result.url);
+          }).catch(err => {
+            console.log("Drillthrough call failed: ", err);
+          })
+        }
+      });
