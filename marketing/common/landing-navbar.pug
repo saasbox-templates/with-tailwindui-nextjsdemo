@@ -38,7 +38,7 @@ mixin landing-navbar()
                 //-img.h-8.w-8.rounded-full(src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80', alt='')
             .origin-top-right.absolute.right-0.mt-2.w-48.rounded-md.shadow-lg(x-show='open', x-description='Profile dropdown panel, show/hide based on dropdown state.', x-transition_enter='transition ease-out duration-100', x-transition_enter-start='transform opacity-0 scale-95', x-transition_enter-end='transform opacity-100 scale-100', x-transition_leave='transition ease-in duration-75', x-transition_leave-start='transform opacity-100 scale-100', x-transition_leave-end='transform opacity-0 scale-95', style='display: none;')
               .py-1.rounded-md.bg-white.ring1.ring-black.ring-opacity-5(role='menu', aria-orientation='vertical', aria-labelledby='user-menu')
-                a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/app/user/profile'), role='menuitem') Your Profile
+                a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href=(currentUser.appUser.is_admin ? '/dashboard/profile' : '/user/profile'), role='menuitem') Your Profile
                 if currentUser.appUser.is_admin
                   a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/dashboard', role='menuitem') Admin Dashboard
                   a.block.px-4.py-2.font-medium.text-gray-500.hover_bg-gray-100.transition.ease-in-out.duration-150(href='/app/start', role='menuitem') App Dashboard
