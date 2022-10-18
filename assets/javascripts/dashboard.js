@@ -29,7 +29,7 @@ link.addClass("text-white bg-indigo-900");
 // If current path is an admin path, highlight both /app/start and /app/admin
 // If current path is a user path, highlight both links with /app/start and /app/user
 // else highlight the matching link. (e.g. /app/xyz)
-
+/*
 // For top navbar based template link highlighting with /app/start => either user or admin based on current user.
 let toplink = $(`a[href*="${paths}"]`);
 let startlink = $(`a[href*="/app/start"]`);
@@ -53,3 +53,4 @@ if (profile == "admin") {
  adminlink.addClass("border-indigo-500 border-b-2");
 }
 console.log("Profile:", profile)
+*/
