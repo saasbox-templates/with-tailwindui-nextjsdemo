@@ -17,9 +17,7 @@ mixin landing-navbar()
               svg.h-6.w-6(stroke='currentColor', fill='none', viewBox='0 0 24 24')
                 path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M4 6h16M4 12h16M4 18h16')
         .hidden.md_block.md_ml-10
-          a.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/features') Features
-          a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/pricing') Pricing
-          a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/blog') Blog
+          //-a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/pricing') Pricing
       .hidden.md_block.text-right
         if !currentUser
           span.inline-flex.rounded-md.shadow-md

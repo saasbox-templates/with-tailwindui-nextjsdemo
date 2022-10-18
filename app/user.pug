@@ -9,14 +9,14 @@
     ```
 html
   include common/app-head.pug
-  +head("Welcome to Sila")  
+  +head("Welcome to Stackboost")  
   body
     .min-h-full
       include common/app-navbar.pug
       +app-navbar()
-      .py-3.bg_cluvio
+      .py-3.bg_superblocks
         header
-          //.max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
+          //-.max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
             h1.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, Sila User
         main
           //- JWT that identifies this user:
@@ -25,23 +25,11 @@ html
             .bg-white.px-2.py-1.sm_px-6.lg_px-8.border.rounded-md.border-indigo-300
               include common/tab-pills.pug
               +tab_pills()
-            //.mt-5.grid.grid-cols-6.gap-4
-              div.col-span-4
-                //-h1.text-2xl.font-semibold.text-gray-900 Asset Upload
-                h4(id="preview-dashboard-for").text-gray-800.font-bold Dashboard
-              //-div.col-span-2
-                include common/select-menu.pug
-                +select_menu()
-          .max-w-7xl.mx-auto.px-2.sm_px-6.md_px-8.bg_cluvio
+          .max-w-7xl.mx-auto.px-2.sm_px-6.md_px-8.bg_superblocks
             //  Replace with your content 
             .py-4
               .flex.flex-col
-                div(id="cluvio-embed-here").-my-2.py-2.overflow-x-auto.sm_-mx-6.sm_px-6.lg_-mx-8.lg_px-8
-                //-
-                //-
-                //- Table is added here by javascript when there are organizations
-                //-
-                //-
+                div(id="superblocks-embed-here").-my-2.py-2.overflow-x-auto.sm_-mx-6.sm_px-6.lg_-mx-8.lg_px-8
           .max-w-7xl.mx-auto.px-4.sm_px-6.md_px-8
             div.mt-6.grid.grid-cols-1.gap-y-6.gap-x-4.sm_grid-cols-6.relative
               div(id="status").col-span-6
@@ -51,92 +39,6 @@ html
     script.
       $(document).ready (function(){
         let jwt = $("#token").attr("data-token");
-
-        // Create new user or fetch existing user to populate their data.
-        //console.log("Making ajax call with jwt:", jwt)
-        $.ajax({
-              url: "https://thinner.onrender.com/daco-create-get-user",
-              headers: { Authorization: "Bearer " + jwt },
-              contentType: 'application/json; charset=utf-8',
-              dataType: 'json',
-              data: JSON.stringify({ }),
-              type: 'POST',
-              success: ((res) => {
-                  let user_data = res.user_data;
-                  let orgs = null;
-
-                  console.log("User:",user_data);
-                  
-                  // No admin data, simply show the organization dashboard
-                  // Get the org id that we are previewing from the url:
-                  let orgId = res.org.id;
-                  let embed_url = null;
-                  org = res.org;
-                  console.log("Org:", org);
-
-                  console.log("Found org to preview", org);
-
-                  // TODO: Simplify this code, handle the case for no dashboards.
-
-                  // Get the query string for the chosen dashboard
-                  let dashname = getQueryString()["dashboard"];
-                  let dashboard = null;
-                  if (dashname) {
-                    console.log("Loading dashboard:", dashname);
-                    // Fix dashboard title:
-                    $("#preview-dashboard-for").text(dashname);
-                    for (let i = 0; i < org.dashboards.length; i++) {
-                      if (org.dashboards[i].name == dashname) {
-                          dashboard = org.dashboards[i];
-                          break;
-                      }
-                    }
-                    return refreshUrl(org.id, dashboard.name).then(url => {
-                      embed_url = url;
-                      // Add the div that will display the iframe:
-                      console.log("Embedding url:", embed_url);
-                      addCluvioEmbed(orgId, embed_url);
-                      addUserDashboardNavigation(org, dashname);
-                    }).catch(err => {
-                        console.log("Error occured while refreshing dashboard url:", err)
-                    });
-                  } else {
-                    if (org.dashboards.length > 0) {
-                      let oldest = org.dashboards[org.dashboards.length - 1];
-                      dashname = oldest.name;
-                      return refreshUrl(org.id, oldest.name).then(url => {
-                        embed_url = url;
-                        // Fix dashboard title:
-                        $("#preview-dashboard-for").text(dashname);
-                        console.log("Loading first dashboard:", dashname);
-                        // Add the div that will display the iframe:
-                        console.log("Embedding url:", embed_url);
-                        addCluvioEmbed(orgId, embed_url);
-                        addUserDashboardNavigation(org, dashname);
-                      }).catch(err => {
-                        console.log("Error occured while refreshing dashboard url:", err)
-                      })
-                    }
-                  }
-              }),
-              error: ((err) => {
-                  console.log(err);
-              })
-        });
-      });
-      $(window).on('message', (event) => {
-        const drillData = JSON.parse(event.originalEvent.data)
-        console.log("Event caught on window\n");
-        if (drillData.event === 'drillDown') {
-          console.log("It is a drillDown event. Data:\n", drillData);
-          return drillThroughUrl(drillData.params.dashboardId, drillData.params.filters).then(result => {
-            console.log("Successful drillthrough call, with url:", result.url);
-            // Now replace the embed with the new url:
-            let orgId = $("#cluvio-embed").attr("data-orgid");
-            addCluvioEmbed(orgId, result.url);
-          }).catch(err => {
-            console.log("Drillthrough call failed: ", err);
-          })
-        }
+        // We do nothing here, no need. Add dashboard tabs if needed
       });
   

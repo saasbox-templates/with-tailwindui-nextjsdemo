@@ -9,9 +9,6 @@ mixin app-navbar()
           .hidden.sm_-my-px.sm_ml-6.sm_flex.sm_space-x-8
             //  Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" 
             a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium(href='/app/start' aria-current='page') Admin
-            if (currentUser.appUser.is_admin == true)
-              a.text-gray-900.inline-flex.items-center.px-1.pt-1.text-sm.font-medium(href='/app/user' aria-current='page') Popup Configurator
-            a.border-transparent.text-gray-500.hover_border-gray-300.hover_text-gray-700.inline-flex.items-center.px-1.pt-1.border-b-2.text-sm.font-medium(href='/app/demo') Popup Demo
         .hidden.sm_ml-6.sm_flex.sm_items-center
           //-button.bg-white.p-1.rounded-full.text-gray-400.hover_text-gray-500.focus_outline-none.focus_ring-2.focus_ring-offset-2.focus_ring-indigo-500(type='button')
             span.sr-only View notifications
@@ -85,10 +82,6 @@ mixin app-navbar()
               path(stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12')
     //  Mobile menu, show/hide based on menu state. 
     .sm_hidden#mobile-menu
-      .pt-2.pb-3.space-y-1
-        //  Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" 
-        a.bg-indigo-50.border-indigo-500.text-indigo-700.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='#' aria-current='page') Dashboard 
-        a.border-transparent.text-gray-600.hover_bg-gray-50.hover_border-gray-300.hover_text-gray-800.block.pl-3.pr-4.py-2.border-l-4.text-base.font-medium(href='/app/test') Test Popup
       .pt-4.pb-3.border-t.border-gray-200
         .flex.items-center.px-4
           .flex-shrink-0
