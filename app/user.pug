@@ -39,4 +39,7 @@ html
         let jwt = $("#token").attr("data-token");
         // We do nothing here, no need. Add dashboard tabs if needed
       });
+      $(window).on('load', (event) => {
+        $(".ant-layout-header").remove();
+      });
   
