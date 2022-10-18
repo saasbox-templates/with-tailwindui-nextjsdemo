@@ -17,11 +17,12 @@ html
       .py-10
         header
           .max-w-7xl.mx-auto.px-4.sm_px-6.lg_px-8
-            h2.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, Sila Admin
+            h2.text-3xl.font-bold.leading-tight.text-gray-900 Welcome, StackBoost Admin
         main
           //- JWT that identifies this user:
           div(hidden, id="token", data-token=token)
-          .max-w-7xl.mx-auto.px-2.sm_px-6.md_px-8.mt-8
+          // Exclude pills navigation so far
+          //-.max-w-7xl.mx-auto.px-2.sm_px-6.md_px-8.mt-8
             .bg-white.px-2.py-1.sm_px-6.lg_px-8.border.rounded-md.border-indigo-300
               include common/tab-pills.pug
               +tab_pills()
