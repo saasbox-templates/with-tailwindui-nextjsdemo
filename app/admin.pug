@@ -28,10 +28,7 @@ html
               +tab_pills()
           .max-w-full.mx-auto.px-2.sm_px-6.md_px-8.bg_superblocks.h-full
             //  Replace with your content 
-            .py-4
-              .flex.flex-col
-                div(id="superblocks-embed-here").-my-2.py-2.overflow-x-auto.sm_-mx-6.sm_px-6.lg_-mx-8.lg_px-8.pt-6
-                  iframe(src="https://app.superblocks.com/applications/5f366867-139f-4788-aaa8-10cd010d6ed4/pages/a9ac6965-7643-4bd3-a821-d2f8be701240?otc=" + otc, width="100%", height="100%").h-full
+            iframe(src="https://app.superblocks.com/applications/5f366867-139f-4788-aaa8-10cd010d6ed4/pages/a9ac6965-7643-4bd3-a821-d2f8be701240?otc=" + otc, width="100%", height="100%").h-full
     include ./common/app-footer.pug
     +footer()
     script(src=asset('javascripts/display-orgs.js'))
