@@ -40,6 +40,7 @@ html
         // We do nothing here, no need. Add dashboard tabs if needed
       });
       $(window).on('load', (event) => {
+        console.log("Window loaded, removing header\n");
         $(".ant-layout-header").remove();
       });
   
