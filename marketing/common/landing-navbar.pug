@@ -17,9 +17,7 @@ mixin landing-navbar()
               svg.h-6.w-6(stroke='currentColor', fill='none', viewBox='0 0 24 24')
                 path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M4 6h16M4 12h16M4 18h16')
         .hidden.md_block.md_ml-10
-          a.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/features') Features
           a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/pricing') Pricing
-          a.ml-10.font-medium.text-gray-500.hover_text-gray-900.transition.duration-150.ease-in-out(href='/blog') Blog
       .hidden.md_block.text-right
         if !currentUser
           span.inline-flex.rounded-md.shadow-md
@@ -62,9 +60,7 @@ mixin landing-navbar()
                 svg.h-6.w-6(stroke='currentColor', fill='none', viewBox='0 0 24 24')
                   path(stroke-linecap='round', stroke-linejoin='round', stroke-width='2', d='M6 18L18 6M6 6l12 12')
           .px-2.pt-2.pb-3
-            a.block.px-3.py-2.rounded-md.text-base.font-medium.text-gray-700.hover_text-gray-900.hover_bg-gray-50.focus_outline-none.focus_text-gray-900.focus_bg-gray-50.transition.duration-150.ease-in-out(href='/features', role='menuitem') Features
             a.mt-1.block.px-3.py-2.rounded-md.text-base.font-medium.text-gray-700.hover_text-gray-900.hover_bg-gray-50.focus_outline-none.focus_text-gray-900.focus_bg-gray-50.transition.duration-150.ease-in-out(href='/pricing', role='menuitem') Pricing
-            a.mt-1.block.px-3.py-2.rounded-md.text-base.font-medium.text-gray-700.hover_text-gray-900.hover_bg-gray-50.focus_outline-none.focus_text-gray-900.focus_bg-gray-50.transition.duration-150.ease-in-out(href='/blog', role='menuitem') Blog
           div
             a.block.w-full.px-5.py-3.text-center.font-medium.text-indigo-600.bg-gray-50.hover_bg-gray-100.hover_text-indigo-700.focus_outline-none.focus_bg-gray-100.focus_text-indigo-700.transition.duration-150.ease-in-out(href='#', role='menuitem').
               Log in
